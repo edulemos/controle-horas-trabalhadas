@@ -1,6 +1,7 @@
 package frame;
 
 import dao.RegistroDAO;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -19,6 +20,7 @@ import javax.swing.table.JTableHeader;
 import model.Parametrizacao;
 import model.Registro;
 import util.Convert;
+import util.OpenBrowser;
 import util.Valida;
 
 public class MainFrame extends javax.swing.JFrame {
@@ -34,6 +36,7 @@ public class MainFrame extends javax.swing.JFrame {
     private String id = "";
     private Valida validate = new Valida();
     private Convert converte = new Convert();
+    private OpenBrowser o = new OpenBrowser();
     private List lista = new ArrayList();
     private Registro registro = new Registro();
     private Integer trabalhadoMes = 0;
@@ -88,6 +91,7 @@ public class MainFrame extends javax.swing.JFrame {
         jButton_deletar = new javax.swing.JButton();
         button_limpar = new javax.swing.JButton();
         fiel_id = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CONTROLE DE HORÁRIO");
@@ -336,6 +340,17 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(fiel_id);
         fiel_id.setBounds(330, 60, 0, 0);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 255));
+        jLabel2.setText("link");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(390, 0, 20, 20);
+
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((screenSize.width-427)/2, (screenSize.height-469)/2, 427, 469);
     }// </editor-fold>//GEN-END:initComponents
@@ -437,6 +452,13 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Falha ao excluir " + e);
         }
     }//GEN-LAST:event_jButton_deletarActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    
+        o.openURL("https://code.google.com/p/controle-horas-trabalhadas/downloads/list");
+        
+        
+        }//GEN-LAST:event_jLabel2MouseClicked
 
       private void preencher_jtable() {      
           
@@ -602,6 +624,7 @@ public class MainFrame extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDate_data;
     private com.toedter.calendar.JDateChooser jDate_de;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane1;
