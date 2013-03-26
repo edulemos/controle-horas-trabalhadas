@@ -17,8 +17,15 @@ public class Convert {
         registro.setSaida(strTimeToMinut(saida));
         registro.setHoraExtra(strTimeToMinut(horaExtra));
         registro.setSaidas(strTimeToMinut(saidas));
-        registro.setTotalTrabalhado(c.trabalhado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
-        registro.setTotalCalculado(c.calculado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+        
+        if (!"00:00".equals(entrada) && !"00:00".equals(saidaAlmoco) && !"00:00".equals(voltaAlmoco) && !"00:00".equals(saida)) {
+            registro.setTotalTrabalhado(c.trabalhado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+            registro.setTotalCalculado(c.calculado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+        } else {
+            registro.setTotalTrabalhado(0);
+            registro.setTotalCalculado(0);
+        }
+
         return registro;
     }
 
