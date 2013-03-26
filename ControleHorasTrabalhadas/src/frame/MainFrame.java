@@ -372,10 +372,15 @@ public class MainFrame extends javax.swing.JFrame {
         
         if ("".equals(erros)) {
             if (null != id && !"".equals(id)) {
-                dao.editar(converte.strToObj(new Integer(id),data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+                dao.editar(converte.strToObj(new Integer(id), data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
             } else {
                 try {
-                    dao.save(converte.strToObj(null,data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+                    registro = converte.strToObj(null, data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);
+                    if (!dao.verificaDuplicado(registro.getData())) {
+                        dao.save(registro);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Data já Cadastrada!");
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -385,7 +390,6 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, erros);
         }
-
     }//GEN-LAST:event_button_gravarActionPerformed
 
     private void button_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_okActionPerformed

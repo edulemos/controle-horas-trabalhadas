@@ -37,8 +37,7 @@ public class Convert {
     }   
 
     public java.sql.Date dataSql(Date data) {
-        java.util.Date utilDate = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+        java.sql.Date sqlDate = new java.sql.Date(data.getTime());
         return sqlDate;
     }
 
@@ -74,9 +73,5 @@ public class Convert {
             return "00:00";
         }
     }
-
-    public Registro strToObj( Date data, String entrada, String saidaAlmoco, String voltaAlmoco, String saida, String horaExtra, String saidas) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-    
+   
 }

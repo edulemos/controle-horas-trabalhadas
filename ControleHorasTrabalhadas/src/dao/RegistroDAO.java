@@ -27,8 +27,9 @@ private int prm;
         }
     }
 
-    public void save(Registro registro) throws SQLException {
-
+    public void save(Registro registro) throws SQLException {        
+        
+        if(!verificaDuplicado(registro.getData())){
             String insert = "INSERT INTO REGISTRO(DATA_REGISTRO, ENTRADA, SAIDA_ALMOCO, VOLTA_ALMOCO, SAIDA, HORA_EXTRA, SAIDAS, TOTAL_TRABALHADO, TOTAL_CALCULADO) VALUES (?,?,?,?,?,?,?,?,?)";
             try {
                 prm = 0;
@@ -49,7 +50,7 @@ private int prm;
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-        
+        }        
     }
 
      public void editar(Registro registro){
