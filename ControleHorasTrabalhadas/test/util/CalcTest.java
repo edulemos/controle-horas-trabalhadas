@@ -7,10 +7,10 @@ public class CalcTest {
     
     @Test
     public void test1() {
-        String entrada = "09:00";
+        String entrada = "09:15";
         String saidaAlmoco = "12:00";
-        String voltaAlmoco = "13:00";
-        String saida = "18:00";
+        String voltaAlmoco = "12:14";
+        String saida = "17:59";
         String horaExtra = "";
         String saidas = "";
         String expResult = "08:00";
@@ -42,10 +42,10 @@ public class CalcTest {
         String entrada = "08:50";
         String saidaAlmoco = "12:00";
         String voltaAlmoco = "13:10";
-        String saida = "18:00";
+        String saida = "17:50";
         String horaExtra = "";
         String saidas = "";
-        String expResult = "07:50";
+        String expResult = "07:40";
         Calc instance = new Calc();
         int result = instance.calculado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);
         assertEquals(expResult, minToDateStr(result));
@@ -61,7 +61,7 @@ public class CalcTest {
         String saida = "17:50";
         String horaExtra = "";
         String saidas = "";
-        String expResult = "07:50";
+        String expResult = "08:00";
         Calc instance = new Calc();
         int result = instance.calculado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);
         assertEquals(expResult, minToDateStr(result));
@@ -109,7 +109,7 @@ public class CalcTest {
         String saida = "18:00";
         String horaExtra = "";
         String saidas = "";
-        String expResult = "07:20";
+        String expResult = "08:00";
         Calc instance = new Calc();
         int result = instance.calculado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);
         assertEquals(expResult, minToDateStr(result));
@@ -141,7 +141,7 @@ public class CalcTest {
         String saida = "18:20";
         String horaExtra = "";
         String saidas = "";
-        String expResult = "07:40";
+        String expResult = "07:55";
         Calc instance = new Calc();
         int result = instance.calculado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);
         assertEquals(expResult, minToDateStr(result));
@@ -163,8 +163,8 @@ public class CalcTest {
         assertEquals(expResult, minToDateStr(result));
         System.out.print("test 10/ ");
         System.out.println("Esperado " + expResult + " Calculado "+ minToDateStr(result));
-    }
-         
+    }    
+            
     public String minToDateStr(Integer time) {
         String horas = "", minutos = "";
         if (null != time && time > 0) {

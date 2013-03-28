@@ -8,13 +8,14 @@ public class Valida{
             String voltaAlmoco, String saida, String horaExtra, String saidas) {        
         String erros = "";       
         if(data == null)erros += "Data Inválida!\n";
-        if(":".equals(entrada.trim())) erros += "Hora Entrada Inválida!\n";
-        if(validaHoraStr(entrada)) erros += "Hora Entrada Inválida!\n";
-        if(validaHoraStr(saidaAlmoco)) erros += "Hora Saída Almoço Inválida!\n";
-        if(validaHoraStr(voltaAlmoco)) erros += "Hora Volta Almoço Inválida!\n";
-        if(validaHoraStr(saida)) erros += "Hora Saída Inválida!\n";
+        if(data.after(new Date()))erros += "Data maior do que a atual!\n";
+        if(":".equals(entrada.trim())) erros += "Hora de Entrada Inválida!\n";
+        if(validaHoraStr(entrada)) erros += "Hora de Entrada Inválida!\n";
+        if(validaHoraStr(saidaAlmoco)) erros += "Hora de Saída Almoço Inválida!\n";
+        if(validaHoraStr(voltaAlmoco)) erros += "Hora de Volta Almoço Inválida!\n";
+        if(validaHoraStr(saida)) erros += "Hora de Saída Inválida!\n";
         if(validaHoraStr(horaExtra)) erros += "Hora Extra Inválida!\n";
-        if(validaHoraStr(saidas)) erros += "Hora Saídas Inválida!\n";
+        if(validaHoraStr(saidas)) erros += "Hora de Saídas Inválida!\n";
         return erros;
     }
     
@@ -27,17 +28,14 @@ public class Valida{
         return erros;
     }
     
-     public static long getDiasEntre(Date dataInicial, Date dataFinal){  
-          
+     public static long getDiasEntre(Date dataInicial, Date dataFinal){            
         if (dataFinal.compareTo(dataInicial) < 0){  
             throw new IllegalArgumentException("A data final deve ser maior " +  
                     "ou igual a data inicial");  
-        }  
-          
+        }            
         long milisecInicial = dataInicial.getTime();  
         long milisecFinal = dataFinal.getTime();  
-        long dif = milisecFinal - milisecInicial;  
-          
+        long dif = milisecFinal - milisecInicial;            
         return (((dif / 1000) / 60) / 60) / 24;  
     }  
     

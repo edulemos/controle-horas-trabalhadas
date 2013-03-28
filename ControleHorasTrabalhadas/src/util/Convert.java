@@ -54,13 +54,13 @@ public class Convert {
 
         if (null != time && time > 0) {
 
-            if (time > 60) {
+            if (time >= 60) {
                 horas = "" + time / 60;
             } else {
                 horas = "00";
             }
 
-            if (time > 60) {
+            if (time >= 60) {
                 minutos = "" + time % 60;
             } else {
                 minutos = "" + time;
@@ -80,5 +80,7 @@ public class Convert {
             return "00:00";
         }
     }
+    
+    
    
 }

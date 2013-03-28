@@ -76,7 +76,7 @@ public class MainFrame extends javax.swing.JFrame {
                 @Override
                 public void propertyChange(PropertyChangeEvent e) {
                     if ("date".equals(e.getPropertyName())) {
-                        fiel_id.setText("");
+                        field_id.setText("");
                         field_entrada.setText("");
                         field_saidaalmoco.setText("");
                         field_voltaalmoco.setText("");
@@ -110,7 +110,7 @@ public class MainFrame extends javax.swing.JFrame {
             button_gravar = new javax.swing.JButton();
             jButton_deletar = new javax.swing.JButton();
             button_limpar = new javax.swing.JButton();
-            fiel_id = new javax.swing.JTextField();
+            field_id = new javax.swing.JTextField();
             jLabel2 = new javax.swing.JLabel();
 
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -170,24 +170,13 @@ public class MainFrame extends javax.swing.JFrame {
                 new String [] {
                     "id", "Data", "Entrada", "S.Almoço", "V.Almoço", "Saída", "H.extra", "Saídas", "Trabalhado", "Calculado"
                 }
-            ) {
-                boolean[] canEdit = new boolean [] {
-                    false, true, true, true, true, true, true, false, true, true
-                };
-
-                public boolean isCellEditable(int rowIndex, int columnIndex) {
-                    return canEdit [columnIndex];
-                }
-            });
+            ));
             jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     jTable1MouseClicked(evt);
                 }
             });
             jScrollPane1.setViewportView(jTable1);
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
-            jTable1.getColumnModel().getColumn(7).setResizable(false);
 
             getContentPane().add(jScrollPane1);
             jScrollPane1.setBounds(10, 170, 390, 220);
@@ -358,8 +347,8 @@ public class MainFrame extends javax.swing.JFrame {
             });
             getContentPane().add(button_limpar);
             button_limpar.setBounds(310, 100, 90, 20);
-            getContentPane().add(fiel_id);
-            fiel_id.setBounds(330, 60, 0, 0);
+            getContentPane().add(field_id);
+            field_id.setBounds(350, 67, 1, 1);
 
             jLabel2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
             jLabel2.setForeground(new java.awt.Color(0, 51, 255));
@@ -371,17 +360,22 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
             getContentPane().add(jLabel2);
-            jLabel2.setBounds(389, 2, 16, 10);
+            jLabel2.setBounds(391, 2, 16, 10);
 
             java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-            setBounds((screenSize.width-415)/2, (screenSize.height-462)/2, 415, 462);
+            setBounds((screenSize.width-416)/2, (screenSize.height-462)/2, 416, 462);
         }// </editor-fold>//GEN-END:initComponents
 
+    public String strHora(String str){
+        if(":".equals(str.trim()))return "00:00";
+        else return str;            
+    }
+    
     private void button_gravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_gravarActionPerformed
   
         RegistroDAO dao = new RegistroDAO();
         
-        id = fiel_id.getText().trim();
+        id = field_id.getText().trim();
         data = jDate_data.getDate();
         entrada = field_entrada.getText().trim();
         saidaAlmoco = field_saidaalmoco.getText().trim();
@@ -390,16 +384,26 @@ public class MainFrame extends javax.swing.JFrame {
         horaExtra = field_horaextra.getText().trim();
         saidas = field_saidas.getText().trim();
 
-        erros = validate.validaFields(data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);
+        erros = validate.validaFields(data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);        
+        
+        String msg = "Data: "+sdf.format(data) + "\n" + "Entrada: " + strHora(entrada) + "\nSaída Almoço:" + strHora(saidaAlmoco)
+                     + "\nVolta Almoco: " + strHora(voltaAlmoco) + "\nSaida: " + strHora(saida) + "\nHora Extra: "  
+                     + strHora(horaExtra) + "\nSaídas: " + strHora(saidas);
         
         if ("".equals(erros)) {
             if (null != id && !"".equals(id)) {
-                dao.editar(converte.strToObj(new Integer(id), data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+                int opcao_escolhida = JOptionPane.showConfirmDialog(null, "Editar Registro:\n" + msg, "Confirmação", JOptionPane.YES_NO_OPTION);
+                if (opcao_escolhida == JOptionPane.YES_OPTION) {
+                    dao.editar(converte.strToObj(new Integer(id), data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+                }
             } else {
                 try {
                     registro = converte.strToObj(null, data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);
                     if (!dao.verificaDuplicado(registro.getData())) {
+                        int opcao_escolhida = JOptionPane.showConfirmDialog(null, "Novo Registro:\n" + msg, "Confirmação", JOptionPane.YES_NO_OPTION);
+                        if (opcao_escolhida == JOptionPane.YES_OPTION) {
                         dao.save(registro);
+                }
                     } else {
                         JOptionPane.showMessageDialog(null, "Data já Cadastrada!");
                     }
@@ -430,8 +434,9 @@ public class MainFrame extends javax.swing.JFrame {
         
         if (linhasum >= 1) {
             try {
-                fiel_id.setText(jTable1.getValueAt(linha, 0).toString());
+
                 jDate_data.setDate(sdf.parse(jTable1.getValueAt(linha, 1).toString()));
+                field_id.setText(jTable1.getValueAt(linha, 0).toString());
                 field_entrada.setText(jTable1.getValueAt(linha, 2).toString());
                 field_saidaalmoco.setText(jTable1.getValueAt(linha, 3).toString());
                 field_voltaalmoco.setText(jTable1.getValueAt(linha, 4).toString());
@@ -448,7 +453,7 @@ public class MainFrame extends javax.swing.JFrame {
         }    }//GEN-LAST:event_jTable1MouseClicked
 
     private void button_limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_limparActionPerformed
-        fiel_id.setText("");
+        field_id.setText("");
         jDate_data.setDate(new java.util.Date());
         field_entrada.setText("");
         field_saidaalmoco.setText("");
@@ -462,13 +467,13 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton_deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deletarActionPerformed
         try {
-            String id = fiel_id.getText().trim();
+            String id = field_id.getText().trim();
             if (null != id && !"".equals(id)) {
                 String excluir = "Confirma a exclusão do registro de " + sdf.format(jDate_data.getDate()) + "!";
                 int opcao_escolhida = JOptionPane.showConfirmDialog(null, excluir, "exclusão", JOptionPane.YES_NO_OPTION);
                 if (opcao_escolhida == JOptionPane.YES_OPTION) {
                     RegistroDAO dao = new RegistroDAO();
-                    dao.delete(new Integer(fiel_id.getText().trim()));
+                    dao.delete(new Integer(field_id.getText().trim()));
                     preencher_jtable();
                     button_limpar.doClick();
                 }                
@@ -634,11 +639,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton button_gravar;
     private javax.swing.JButton button_limpar;
     private javax.swing.JButton button_ok;
-    private javax.swing.JTextField fiel_id;
     private javax.swing.JTextField field_calculado_dia;
     private javax.swing.JTextField field_calculado_mes;
     private javax.swing.JFormattedTextField field_entrada;
     private javax.swing.JFormattedTextField field_horaextra;
+    private javax.swing.JTextField field_id;
     private javax.swing.JFormattedTextField field_saida;
     private javax.swing.JFormattedTextField field_saidaalmoco;
     private javax.swing.JFormattedTextField field_saidas;
