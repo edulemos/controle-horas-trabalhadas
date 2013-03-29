@@ -1,7 +1,6 @@
 package frame;
 
 import dao.RegistroDAO;
-import java.awt.Desktop;
 import java.awt.Font;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -144,7 +143,7 @@ public class MainFrame extends javax.swing.JFrame {
             label_saida.setBounds(210, 80, 90, 20);
 
             label_hextra.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-            label_hextra.setText("HORA EXTRA");
+            label_hextra.setText("H. EXTRA APROV");
             getContentPane().add(label_hextra);
             label_hextra.setBounds(10, 80, 90, 20);
 
@@ -168,7 +167,7 @@ public class MainFrame extends javax.swing.JFrame {
                     {null, null, null, null, null, null, null, null, null, null}
                 },
                 new String [] {
-                    "id", "Data", "Entrada", "S.Almoço", "V.Almoço", "Saída", "H.extra", "Saídas", "Trabalhado", "Calculado"
+                    "id", "Data", "Entrada", "S.Almoço", "V.Almoço", "Saída", "H.extra", "Saídas", "Trab", "Calc"
                 }
             ));
             jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -372,8 +371,6 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     private void button_gravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_gravarActionPerformed
-  
-        RegistroDAO dao = new RegistroDAO();
         
         id = field_id.getText().trim();
         data = jDate_data.getDate();
@@ -394,15 +391,14 @@ public class MainFrame extends javax.swing.JFrame {
             if (null != id && !"".equals(id)) {
                 int opcao_escolhida = JOptionPane.showConfirmDialog(null, "Editar Registro:\n" + msg, "Confirmação", JOptionPane.YES_NO_OPTION);
                 if (opcao_escolhida == JOptionPane.YES_OPTION) {
-                    dao.editar(converte.strToObj(new Integer(id), data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+                    dao().editar(converte.strToObj(new Integer(id), data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
                 }
             } else {
                 try {
-                    registro = converte.strToObj(null, data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);
-                    if (!dao.verificaDuplicado(registro.getData())) {
-                        int opcao_escolhida = JOptionPane.showConfirmDialog(null, "Novo Registro:\n" + msg, "Confirmação", JOptionPane.YES_NO_OPTION);
-                        if (opcao_escolhida == JOptionPane.YES_OPTION) {
-                        dao.save(registro);
+                    if (!dao().verificaDuplicado(converte.dataSql(data))) {
+                    int opcao_escolhida = JOptionPane.showConfirmDialog(null, "Novo Registro:\n" + msg, "Confirmação", JOptionPane.YES_NO_OPTION);
+                    if (opcao_escolhida == JOptionPane.YES_OPTION) {
+                    dao().save(converte.strToObj(null, data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
                 }
                     } else {
                         JOptionPane.showMessageDialog(null, "Data já Cadastrada!");
@@ -434,7 +430,6 @@ public class MainFrame extends javax.swing.JFrame {
         
         if (linhasum >= 1) {
             try {
-
                 jDate_data.setDate(sdf.parse(jTable1.getValueAt(linha, 1).toString()));
                 field_id.setText(jTable1.getValueAt(linha, 0).toString());
                 field_entrada.setText(jTable1.getValueAt(linha, 2).toString());
@@ -472,29 +467,22 @@ public class MainFrame extends javax.swing.JFrame {
                 String excluir = "Confirma a exclusão do registro de " + sdf.format(jDate_data.getDate()) + "!";
                 int opcao_escolhida = JOptionPane.showConfirmDialog(null, excluir, "exclusão", JOptionPane.YES_NO_OPTION);
                 if (opcao_escolhida == JOptionPane.YES_OPTION) {
-                    RegistroDAO dao = new RegistroDAO();
-                    dao.delete(new Integer(field_id.getText().trim()));
+                    dao().delete(new Integer(field_id.getText().trim()));
                     preencher_jtable();
                     button_limpar.doClick();
                 }                
-            }
-            
+            }            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Falha ao excluir " + e);
         }
     }//GEN-LAST:event_jButton_deletarActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-    
-        o.openURL("https://code.google.com/p/controle-horas-trabalhadas/downloads/list");
-        
-        
+            o.openURL("https://code.google.com/p/controle-horas-trabalhadas/downloads/list");       
         }//GEN-LAST:event_jLabel2MouseClicked
 
       private void preencher_jtable() {      
-          
-        RegistroDAO dao = new RegistroDAO();  
-          
+                  
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setNumRows(0);
 
@@ -539,7 +527,7 @@ public class MainFrame extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(9).setCellRenderer(centralizado);     
 
         try{            
-           lista = dao.getLista(converte.dataSql(jDate_de.getDate()), converte.dataSql(jDate_ate.getDate()));
+           lista = dao().getLista(converte.dataSql(jDate_de.getDate()), converte.dataSql(jDate_ate.getDate()));
            
             trabalhadoMes = 0;            
             calculadoMes = 0;            
@@ -567,11 +555,9 @@ public class MainFrame extends javax.swing.JFrame {
                 }
                }else{
                 modelo.setNumRows(0);
-             }
-            
+             }            
             field_trabalhado_mes.setText(converte.minToDateStr(trabalhadoMes));
             field_calculado_mes.setText(converte.minToDateStr(calculadoMes));
-
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "erro ao listar Jtable" + erro);
@@ -592,9 +578,8 @@ public class MainFrame extends javax.swing.JFrame {
     } 
       
     public void setParameter() {
-        RegistroDAO dao = new RegistroDAO();
         try {
-            Map<String, String> mapa = dao.getPrm();
+            Map<String, String> mapa = dao().getPrm();
             String dataIniPrm = mapa.get("inicio");
             String dataFimPrm = mapa.get("fim");
             Date dataini = sdf.parse(dataIniPrm);
@@ -612,20 +597,23 @@ public class MainFrame extends javax.swing.JFrame {
         try {
             String dataIniFrm = sdf.format(jDate_de.getDate().getTime());
             String dataFimFrm = sdf.format(jDate_ate.getDate().getTime());
-            RegistroDAO dao1 = new RegistroDAO();
             Parametrizacao param1 = new Parametrizacao();
             param1.setParametro("inicio");
             param1.setValor(dataIniFrm);
-            dao1.updatePrm(param1);
-            RegistroDAO dao2 = new RegistroDAO();
+            dao().updatePrm(param1);
             Parametrizacao param2 = new Parametrizacao();
             param2.setParametro("fim");
             param2.setValor(dataFimFrm);
-            dao2.updatePrm(param2);
+            dao().updatePrm(param2);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    
+    private RegistroDAO dao() {
+        RegistroDAO dao = new RegistroDAO();
+        return dao;
+    } 
     
     public static void main(String args[]) {
                       

@@ -15,26 +15,28 @@ static Convert c = new Convert();
 		int minTempoAlmoco = 0;
 		int compensacao = 0;
                 int desconto = 0;
+                int trabalhado = 0;
+                int diferenca = 0;
 		
 		// inicia o dia com 8hs
-		int trabalhado = 480;
+		int calculado = 480; 
 		
 		//calcula o tempo gasto no almoco
 		minTempoAlmoco = minvoltaAlmoco - minSaidaAlmoco;
 					
 		// desconta o atraso
 		if (minEntrada > 540) {
-			trabalhado -= minEntrada - 540;
+			calculado -= minEntrada - 540;
 		}
 		
-		// saiu antes de 09:00 desconta o excedente (e não pode ser compensado)
+		// saiu antes de 18:00 desconta o excedente
 		if(minSaida < 1080) {
-		  trabalhado -= 1080 - minSaida;
+		  calculado -= 1080 - minSaida;
 		}
 		
 		// gastou mais de 1h de almoço desconta o excedente
 		if(minTempoAlmoco > 60) {
-			trabalhado -= minTempoAlmoco - 60;
+			calculado -= minTempoAlmoco - 60;
 		}
                 
 		// calcula a possivel compensacao apos 18:00
@@ -54,20 +56,34 @@ static Convert c = new Convert();
 			compensacao = 15;			
 		}
 		
-		//caso trabalhado + de 8hs aplica as compensações
-		if( trabalhado < 480){
-			trabalhado += compensacao;
+		//caso trabalhado - de 8hs aplica as compensações
+		if( calculado < 480){
+			calculado += compensacao;
 		}
 		
 		//caso trabalho + compensacao ultrapasse 480 
-		if( trabalhado > 480){
-			trabalhado = 480;
-		}
-				
-		trabalhado += minHoraExtra;
-		trabalhado -= minSaidas;
+		if( calculado > 480){
+			calculado = 480;
+		}                
 		
-		return trabalhado;
+                //total do dia
+                trabalhado = trabalhado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);
+                        
+                //desconta as saidas
+                calculado -= minSaidas;
+                
+                //verifica a diferença entre o trabalhao e o calculado
+                diferenca = trabalhado - calculado;
+                
+                // caso a hora extra maior do que a sobra e dado o corte
+                if( minHoraExtra > diferenca ){
+                    minHoraExtra = diferenca;
+                }
+                
+                //aplica a hora extra
+		calculado += minHoraExtra;
+		
+		return calculado;
 	}
 
     public int trabalhado(String entrada, String saidaAlmoco, String voltaAlmoco, String saida, String horaExtra, String saidas) {
@@ -84,9 +100,7 @@ static Convert c = new Convert();
         minAntesAlmoco = minSaidaAlmoco - minEntrada;
         minDepoisAlmoco = minSaida - minvoltaAlmoco;
         minTrabalhado = minAntesAlmoco + minDepoisAlmoco;
-        minTrabalhado = minTrabalhado + minHoraExtra;
-        minTrabalhado = minTrabalhado - minSaidas;
-
+        
         return minTrabalhado;
     }
     
