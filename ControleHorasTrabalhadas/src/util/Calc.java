@@ -14,7 +14,6 @@ static Convert c = new Convert();
 		int minSaidas = c.strTimeToMinut(saidas);
 		int minTempoAlmoco = 0;
 		int compensacao = 0;
-                int desconto = 0;
                 int trabalhado = 0;
                 int diferenca = 0;
 		
@@ -100,6 +99,7 @@ static Convert c = new Convert();
         minAntesAlmoco = minSaidaAlmoco - minEntrada;
         minDepoisAlmoco = minSaida - minvoltaAlmoco;
         minTrabalhado = minAntesAlmoco + minDepoisAlmoco;
+        minTrabalhado -= minSaidas;
         
         return minTrabalhado;
     }

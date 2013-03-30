@@ -24,8 +24,7 @@ import util.Convert;
 import util.OpenBrowser;
 import util.Valida;
 
-public class MainFrame extends javax.swing.JFrame {
-    
+public class MainFrame extends javax.swing.JFrame {    
     private Date data = null;
     private String entrada = "";
     private String saidaAlmoco = "";
@@ -398,7 +397,7 @@ public class MainFrame extends javax.swing.JFrame {
                     if (!dao().verificaDuplicado(converte.dataSql(data))) {
                     int opcao_escolhida = JOptionPane.showConfirmDialog(null, "Novo Registro:\n" + msg, "Confirmação", JOptionPane.YES_NO_OPTION);
                     if (opcao_escolhida == JOptionPane.YES_OPTION) {
-                    dao().save(converte.strToObj(null, data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+                    dao().save(converte.strToObj(null, data, strHora(entrada), strHora(saidaAlmoco), strHora(voltaAlmoco), strHora(saida), strHora(horaExtra), strHora(saidas)));
                 }
                     } else {
                         JOptionPane.showMessageDialog(null, "Data já Cadastrada!");
@@ -471,6 +470,9 @@ public class MainFrame extends javax.swing.JFrame {
                     preencher_jtable();
                     button_limpar.doClick();
                 }                
+            }else{
+                   JOptionPane.showMessageDialog(null, "Nenhum Registro Selecionado!");
+
             }            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Falha ao excluir " + e);
