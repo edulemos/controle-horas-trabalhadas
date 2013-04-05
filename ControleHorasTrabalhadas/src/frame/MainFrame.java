@@ -212,8 +212,9 @@ public class MainFrame extends javax.swing.JFrame {
             jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
             jLabel1.setForeground(new java.awt.Color(153, 153, 153));
             jLabel1.setText("        CONTROLE DE HORÁRIO");
+            jLabel1.setRequestFocusEnabled(false);
             getContentPane().add(jLabel1);
-            jLabel1.setBounds(50, 0, 290, 40);
+            jLabel1.setBounds(57, 0, 290, 40);
 
             field_trabalhado_dia.setEditable(false);
             field_trabalhado_dia.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -352,15 +353,14 @@ public class MainFrame extends javax.swing.JFrame {
 
             jLabel2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
             jLabel2.setForeground(new java.awt.Color(0, 51, 255));
-            jLabel2.setText("HOME");
-            jLabel2.setVerifyInputWhenFocusTarget(false);
+            jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home_icon.gif"))); // NOI18N
             jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     jLabel2MouseClicked(evt);
                 }
             });
             getContentPane().add(jLabel2);
-            jLabel2.setBounds(378, 2, 29, 10);
+            jLabel2.setBounds(384, 2, 30, 20);
 
             jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/relatorio.gif"))); // NOI18N
             jLabel6.setVerifyInputWhenFocusTarget(false);
