@@ -21,6 +21,7 @@ import javax.swing.table.JTableHeader;
 import model.Parametrizacao;
 import model.Registro;
 import util.Convert;
+import util.GeraRelatorio;
 import util.OpenBrowser;
 import util.Valida;
 
@@ -110,6 +111,7 @@ public class MainFrame extends javax.swing.JFrame {
             button_limpar = new javax.swing.JButton();
             field_id = new javax.swing.JTextField();
             jLabel2 = new javax.swing.JLabel();
+            jLabel6 = new javax.swing.JLabel();
 
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
             setTitle("CONTROLE DE HORÁRIO");
@@ -350,15 +352,25 @@ public class MainFrame extends javax.swing.JFrame {
 
             jLabel2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
             jLabel2.setForeground(new java.awt.Color(0, 51, 255));
-            jLabel2.setText("link");
-            jLabel2.setRequestFocusEnabled(false);
+            jLabel2.setText("HOME");
+            jLabel2.setVerifyInputWhenFocusTarget(false);
             jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
                     jLabel2MouseClicked(evt);
                 }
             });
             getContentPane().add(jLabel2);
-            jLabel2.setBounds(391, 2, 16, 10);
+            jLabel2.setBounds(378, 2, 29, 10);
+
+            jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/relatorio.gif"))); // NOI18N
+            jLabel6.setVerifyInputWhenFocusTarget(false);
+            jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    jLabel6MouseClicked(evt);
+                }
+            });
+            getContentPane().add(jLabel6);
+            jLabel6.setBounds(2, 4, 30, 20);
 
             java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
             setBounds((screenSize.width-416)/2, (screenSize.height-462)/2, 416, 462);
@@ -482,6 +494,10 @@ public class MainFrame extends javax.swing.JFrame {
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
             o.openURL("https://code.google.com/p/controle-horas-trabalhadas/downloads/list");       
         }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        new GeraRelatorio().relatorio(jDate_de.getDate(), jDate_ate.getDate());
+    }//GEN-LAST:event_jLabel6MouseClicked
 
       private void preencher_jtable() {      
                   
@@ -646,6 +662,7 @@ public class MainFrame extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDate_de;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane1;
