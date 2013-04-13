@@ -402,14 +402,14 @@ public class MainFrame extends javax.swing.JFrame {
             if (null != id && !"".equals(id)) {
                 int opcao_escolhida = JOptionPane.showConfirmDialog(null, "Editar Registro:\n" + msg, "Confirmação", JOptionPane.YES_NO_OPTION);
                 if (opcao_escolhida == JOptionPane.YES_OPTION) {
-                    dao().editar(converte.strToObj(new Integer(id), data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+                    dao().editar(converte.strToObj(new Integer(id), data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas, data));
                 }
             } else {
                 try {
                     if (!dao().verificaDuplicado(converte.dataSql(data))) {
                     int opcao_escolhida = JOptionPane.showConfirmDialog(null, "Novo Registro:\n" + msg, "Confirmação", JOptionPane.YES_NO_OPTION);
                     if (opcao_escolhida == JOptionPane.YES_OPTION) {
-                    dao().save(converte.strToObj(null, data, strHora(entrada), strHora(saidaAlmoco), strHora(voltaAlmoco), strHora(saida), strHora(horaExtra), strHora(saidas)));
+                    dao().save(converte.strToObj(null, data, strHora(entrada), strHora(saidaAlmoco), strHora(voltaAlmoco), strHora(saida), strHora(horaExtra), strHora(saidas), data));
                 }
                     } else {
                         JOptionPane.showMessageDialog(null, "Data já Cadastrada!");

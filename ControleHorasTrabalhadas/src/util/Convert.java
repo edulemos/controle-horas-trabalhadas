@@ -1,5 +1,7 @@
 package util;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import model.Registro;
 
@@ -8,7 +10,7 @@ public class Convert {
     Registro registro =  new Registro( );
     Calc c = new Calc();
 
-    public Registro strToObj(Integer id, Date data, String entrada, String saidaAlmoco, String voltaAlmoco, String saida, String horaExtra, String saidas) {
+    public Registro strToObj(Integer id, Date data, String entrada, String saidaAlmoco, String voltaAlmoco, String saida, String horaExtra, String saidas, Date data2) {
         registro.setId(id);
         registro.setData(dataSql(data));
         registro.setEntrada(strTimeToMinut(entrada));
@@ -20,7 +22,12 @@ public class Convert {
         
         if (!"00:00".equals(entrada) && !"00:00".equals(saidaAlmoco) && !"00:00".equals(voltaAlmoco) && !"00:00".equals(saida)) {
             registro.setTotalTrabalhado(c.trabalhado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
-            registro.setTotalCalculado(c.calculado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+            
+            if(isBusinessDay(data))
+            	registro.setTotalCalculado(c.calculado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+            else
+            	registro.setTotalCalculado(c.trabalhadoDiaExtra(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+            
         } else {
             registro.setTotalTrabalhado(0);
             registro.setTotalCalculado(0);
@@ -80,6 +87,36 @@ public class Convert {
             return "00:00";
         }
     }
+    
+
+	public boolean isBusinessDay(java.util.Date data) {
+
+            SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat sd1 = new SimpleDateFormat("EEEE");
+
+            //Feriados nacionais que caem no meio da semana
+            ArrayList<String> feriados = new ArrayList<String>();
+            feriados.add("29-03-2013"); // Pascoa
+            feriados.add("01-05-2013"); // Dia do Trabalho
+            feriados.add("30-05-2013"); // Corpus christi
+            feriados.add("15-11-2013"); // Proclamacao Republica 
+            feriados.add("25-12-2013"); // Natal
+            feriados.add("01-01-2014"); // Ano Novo
+            feriados.add("04-03-2014"); // Carvaval
+            feriados.add("18-04-2014"); // Pascoa
+            feriados.add("21-04-2014"); // Tiradentes
+            feriados.add("01-05-2014"); // Dia do Trabalho
+            feriados.add("19-06-2014"); // Corpus christi
+            feriados.add("25-12-2014"); // Natal
+            feriados.add("01-01-2015"); // Ano Novo
+
+            if( "Domingo".equals(sd1.format(data)) || "Sábado".equals(sd1.format(data)) ||
+                "Sunday".equals(sd1.format(data)) || "Saturday".equals(sd1.format(data)) || feriados.contains(sd.format(data)))
+             return false;
+            else		
+             return true;
+		
+	}
     
     
    

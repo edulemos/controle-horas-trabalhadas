@@ -4,8 +4,7 @@ public class Calc {
 
 static Convert c = new Convert();
 
-    public int calculado(String entrada, String saidaAlmoco,
-			String voltaAlmoco, String saida, String horaExtra, String saidas) {
+    public int calculado(String entrada, String saidaAlmoco, String voltaAlmoco, String saida, String horaExtra, String saidas) {
 		int minEntrada = c.strTimeToMinut(entrada);
 		int minSaidaAlmoco = c.strTimeToMinut(saidaAlmoco);
 		int minvoltaAlmoco = c.strTimeToMinut(voltaAlmoco);
@@ -65,27 +64,47 @@ static Convert c = new Convert();
 			calculado = 480;
 		}                
 		
-                //total do dia
-                trabalhado = trabalhado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);
-                        
-                //desconta as saidas
-                calculado -= minSaidas;
+        //total do dia
+        trabalhado = trabalhado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);
                 
-                //verifica a diferença entre o trabalhao e o calculado
-                diferenca = trabalhado - calculado;
-                
-                // caso a hora extra maior do que a sobra e dado o corte
-                if( minHoraExtra > diferenca ){
-                    minHoraExtra = diferenca;
-                }
-                
-                //aplica a hora extra
+        //desconta as saidas
+        calculado -= minSaidas;
+        
+        //verifica a diferença entre o trabalhao e o calculado
+        diferenca = trabalhado - calculado;
+        
+        // caso a hora extra maior do que a sobra e dado o corte
+        if( minHoraExtra > diferenca ){
+            minHoraExtra = diferenca;
+        }
+        
+        //aplica a hora extra
 		calculado += minHoraExtra;
 		
 		return calculado;
 	}
+    
+    
 
     public int trabalhado(String entrada, String saidaAlmoco, String voltaAlmoco, String saida, String horaExtra, String saidas) {
+        int minEntrada = c.strTimeToMinut(entrada);
+        int minSaidaAlmoco = c.strTimeToMinut(saidaAlmoco);
+        int minvoltaAlmoco = c.strTimeToMinut(voltaAlmoco);
+        int minSaida = c.strTimeToMinut(saida);
+        int minSaidas = c.strTimeToMinut(saidas);
+        int minTrabalhado = 0;
+        int minAntesAlmoco = 0;
+        int minDepoisAlmoco = 0;
+
+        minAntesAlmoco = minSaidaAlmoco - minEntrada;
+        minDepoisAlmoco = minSaida - minvoltaAlmoco;
+        minTrabalhado = minAntesAlmoco + minDepoisAlmoco;
+        minTrabalhado -= minSaidas;
+        
+        return minTrabalhado;
+    }
+    
+    public int trabalhadoDiaExtra(String entrada, String saidaAlmoco, String voltaAlmoco, String saida, String horaExtra, String saidas) {
         int minEntrada = c.strTimeToMinut(entrada);
         int minSaidaAlmoco = c.strTimeToMinut(saidaAlmoco);
         int minvoltaAlmoco = c.strTimeToMinut(voltaAlmoco);
@@ -100,6 +119,9 @@ static Convert c = new Convert();
         minDepoisAlmoco = minSaida - minvoltaAlmoco;
         minTrabalhado = minAntesAlmoco + minDepoisAlmoco;
         minTrabalhado -= minSaidas;
+        
+        if( minTrabalhado > minHoraExtra)
+        	minTrabalhado = minHoraExtra;
         
         return minTrabalhado;
     }
