@@ -18,7 +18,6 @@ public class GeraRelatorio {
     public void relatorio(java.util.Date inicio, java.util.Date fim) {
         try {
             Convert c = new Convert();
-            SimpleDateFormat sd1 = new SimpleDateFormat("dd/MM EEEE");
             SimpleDateFormat sd2 = new SimpleDateFormat("dd/MM");
             SimpleDateFormat sd3 = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -59,9 +58,6 @@ public class GeraRelatorio {
                  
                  calculado += r.getTotalCalculado();
                  trabalhado += r.getTotalTrabalhado();
-                 
-                 System.out.println(sd1.format(r.getData()));
-                 
             }
             
             sobra = trabalhado - calculado;
@@ -87,7 +83,7 @@ public class GeraRelatorio {
 		try {
 			File arquivo = new File("relatorio.rtf");
 			if (arquivo.exists()) {
-				arquivo.delete();
+                            arquivo.delete();
 			}
 			BufferedWriter out = new BufferedWriter(new FileWriter(arquivo));
 			out.write(texto);
@@ -101,7 +97,6 @@ public class GeraRelatorio {
         
          @SuppressWarnings("deprecation")
 	public static void main(String args[]){
-
     	java.util.Date ini = new java.util.Date(113, 2, 21);
     	java.util.Date fim = new java.util.Date(113, 3, 20);
     	new GeraRelatorio().relatorio(ini, fim);       

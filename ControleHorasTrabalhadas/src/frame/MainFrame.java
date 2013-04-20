@@ -168,7 +168,7 @@ public class MainFrame extends javax.swing.JFrame {
                     {null, null, null, null, null, null, null, null, null, null}
                 },
                 new String [] {
-                    "id", "Data", "Entrada", "S.Almoço", "V.Almoço", "Saída", "H.extra", "Saídas", "Trab", "Calc"
+                    "id", "Data", "Entrada", "S.Alm", "V.Alm", "Saída", "H.extra", "Saídas", "Trab", "Calc"
                 }
             ));
             jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -394,7 +394,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         erros = validate.validaFields(data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);        
         
-        String msg = "Data: "+sdf.format(data) + "\n" + "Entrada: " + strHora(entrada) + "\nSaída Almoço:" + strHora(saidaAlmoco)
+        String msg = "Data: "+sdf.format(data) + "\n" + "Entrada: " + strHora(entrada) + "\nSaída Almoço: " + strHora(saidaAlmoco)
                      + "\nVolta Almoco: " + strHora(voltaAlmoco) + "\nSaida: " + strHora(saida) + "\nHora Extra: "  
                      + strHora(horaExtra) + "\nSaídas: " + strHora(saidas);
         

@@ -171,8 +171,8 @@
                 <Column editable="true" title="id" type="java.lang.Object"/>
                 <Column editable="true" title="Data" type="java.lang.Object"/>
                 <Column editable="true" title="Entrada" type="java.lang.Object"/>
-                <Column editable="true" title="S.Almo&#xe7;o" type="java.lang.Object"/>
-                <Column editable="true" title="V.Almo&#xe7;o" type="java.lang.Object"/>
+                <Column editable="true" title="S.Alm" type="java.lang.Object"/>
+                <Column editable="true" title="V.Alm" type="java.lang.Object"/>
                 <Column editable="true" title="Sa&#xed;da" type="java.lang.Object"/>
                 <Column editable="true" title="H.extra" type="java.lang.Object"/>
                 <Column editable="true" title="Sa&#xed;das" type="java.lang.Object"/>
