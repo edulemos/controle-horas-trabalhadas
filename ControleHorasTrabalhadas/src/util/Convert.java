@@ -21,6 +21,7 @@ public class Convert {
         registro.setSaidas(strTimeToMinut(saidas));
         
         if (!"00:00".equals(entrada) && !"00:00".equals(saidaAlmoco) && !"00:00".equals(voltaAlmoco) && !"00:00".equals(saida)) {
+            
             registro.setTotalTrabalhado(c.trabalhado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
             
             if(isBusinessDay(data))
@@ -29,8 +30,10 @@ public class Convert {
             	registro.setTotalCalculado(c.trabalhadoDiaExtra(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
             
         } else {
+            
             registro.setTotalTrabalhado(0);
             registro.setTotalCalculado(0);
+            
         }
 
         return registro;
@@ -38,7 +41,17 @@ public class Convert {
 
     public Integer strTimeToMinut(String time) {
         try {
-            if (!":".equals(time.trim())) {
+            /* Gambiarra purra marquei a hora compensada com C para não ter que criar outro campo
+               somei 1500 ao numero de minutos para saber se e extra ou compensação pois a 
+               validação so aceita ate 23:59 que são 1440 minutos mais do que isso e compensação
+               e subtraio 1500 na hora do calculo
+             */ 
+            if (time.contains("C")) {                
+                time =  time.replace("C", "");
+                Integer horas = Integer.parseInt(time.split(":")[0]);
+                Integer minutos = Integer.parseInt(time.split(":")[1]);
+                return (horas * 60) + minutos + 1500;                
+            } else if (!":".equals(time.trim())) {
                 Integer horas = Integer.parseInt(time.split(":")[0]);
                 Integer minutos = Integer.parseInt(time.split(":")[1]);
                 return (horas * 60) + minutos;
@@ -55,7 +68,7 @@ public class Convert {
         return sqlDate;
     }
 
-    public String minToDateStr(Integer time) {
+    public String minToHoraStr(Integer time) {
         String horas = "";
         String minutos = "";
 
@@ -84,7 +97,9 @@ public class Convert {
             return horas + ":" + minutos;
             
         } else {
+            
             return "00:00";
+            
         }
     }
     

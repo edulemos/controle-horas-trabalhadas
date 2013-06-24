@@ -4,18 +4,14 @@ import java.util.Date;
 
 public class Valida{
 
-    public String validaFields(Date data, String entrada, String saidaAlmoco,
-            String voltaAlmoco, String saida, String horaExtra, String saidas) {        
+        public String validaFields(Date data, String entrada, String saidaAlmoco, String voltaAlmoco
+                                  ,String saida, String horaExtra, String horaCompensada, String saidas) {
         String erros = "";       
         if(data == null)erros += "Data Inválida!\n";
-        if(data.after(new Date()))erros += "Data maior do que a atual!\n";
-        if(":".equals(entrada.trim())) erros += "Hora de Entrada Inválida!\n";
-        if(validaHoraStr(entrada)) erros += "Hora de Entrada Inválida!\n";
-        if(validaHoraStr(saidaAlmoco)) erros += "Hora de Saída Almoço Inválida!\n";
-        if(validaHoraStr(voltaAlmoco)) erros += "Hora de Volta Almoço Inválida!\n";
-        if(validaHoraStr(saida)) erros += "Hora de Saída Inválida!\n";
-        if(validaHoraStr(horaExtra)) erros += "Hora Extra Inválida!\n";
-        if(validaHoraStr(saidas)) erros += "Hora de Saídas Inválida!\n";
+        if(data.after(new Date()))erros += "Data Selecionada maior do que a data atual!\n";
+        if("00:00".equals(entrada.trim())) erros += "Hora de Entrada Obrigatório!\n";
+        if(!"00:00".equals(horaCompensada) && !"00:00".equals(horaExtra))erros += "Hora Compensada não comulativa com hora extra\nPreencha apenas uma das opções!\n";
+
         return erros;
     }
     
@@ -38,21 +34,6 @@ public class Valida{
         long dif = milisecFinal - milisecInicial;            
         return (((dif / 1000) / 60) / 60) / 24;  
     }  
-    
-    private boolean validaHoraStr(String time) {
-        boolean b = false;
-        try {
-            if (!":".equals(time.trim())) {
-                Integer hora = new Integer(time.split(":")[0]);
-                Integer minutos = new Integer(time.split(":")[1]);
-                if (hora < 0 || hora > 23 || minutos < 0 || minutos > 59) {
-                    b = true;
-                }
-            }
-        } catch (Exception e) {
-            b = true;
-        }
-        return b;
-    }
-    
+         
+
 }

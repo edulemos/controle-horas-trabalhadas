@@ -15,6 +15,11 @@ static Convert c = new Convert();
 		int compensacao = 0;
                 int trabalhado = 0;
                 int diferenca = 0;
+                
+                // Desfaço a Gambiarra Parra saber se e hora extra ou compensada no relatorio
+                if (minHoraExtra > 1500) {
+                    minHoraExtra = minHoraExtra - 1500;
+                }
 		
 		// inicia o dia com 8hs
 		int calculado = 480; 
@@ -84,8 +89,6 @@ static Convert c = new Convert();
 		return calculado;
 	}
     
-    
-
     public int trabalhado(String entrada, String saidaAlmoco, String voltaAlmoco, String saida, String horaExtra, String saidas) {
         int minEntrada = c.strTimeToMinut(entrada);
         int minSaidaAlmoco = c.strTimeToMinut(saidaAlmoco);
@@ -114,6 +117,11 @@ static Convert c = new Convert();
         int minTrabalhado = 0;
         int minAntesAlmoco = 0;
         int minDepoisAlmoco = 0;
+        
+        // Desfaço a Gambiarra Parra saber se e hora extra ou compensada no relatorio
+        if (minHoraExtra > 1500) {
+            minHoraExtra = minHoraExtra - 1500;
+        }
 
         minAntesAlmoco = minSaidaAlmoco - minEntrada;
         minDepoisAlmoco = minSaida - minvoltaAlmoco;
