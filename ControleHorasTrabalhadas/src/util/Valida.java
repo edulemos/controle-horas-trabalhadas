@@ -5,13 +5,12 @@ import java.util.Date;
 public class Valida{
 
         public String validaFields(Date data, String entrada, String saidaAlmoco, String voltaAlmoco
-                                  ,String saida, String horaExtra, String horaCompensada, String saidas) {
+                                  ,String saida, String horaExtra, String saidas) {
         String erros = "";       
         if(data == null)erros += "Data Inválida!\n";
         if(data.after(new Date()))erros += "Data Selecionada maior do que a data atual!\n";
         if("00:00".equals(entrada.trim())) erros += "Hora de Entrada Obrigatório!\n";
-        if(!"00:00".equals(horaCompensada) && !"00:00".equals(horaExtra))erros += "Hora Compensada não comulativa com hora extra\nPreencha apenas uma das opções!\n";
-
+        
         return erros;
     }
     
@@ -20,7 +19,7 @@ public class Valida{
         if(dataini == null)erros += "Data Inicial Inválida!\n";
         if(datafim == null)erros += "Data Final Inválida!\n";
         if(dataini != null && datafim != null &&  datafim.before(dataini))erros += "Data Final menor que incial!\n";
-        if(dataini != null && datafim != null && datafim.after(dataini) && getDiasEntre(dataini, datafim) > 100 ) erros += "Período Max = 100 dias!\n";             
+//      if(dataini != null && datafim != null && datafim.after(dataini) && getDiasEntre(dataini, datafim) > 100 ) erros += "Período Max = 100 dias!\n";             
         return erros;
     }
     

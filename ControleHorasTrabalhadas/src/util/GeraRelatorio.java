@@ -24,71 +24,70 @@ public class GeraRelatorio {
             SimpleDateFormat sd2 = new SimpleDateFormat("dd/MM");
             SimpleDateFormat sd3 = new SimpleDateFormat("dd/MM/yyyy");
             HashMap<String, String> mapa = resumoDatasPeriodo(inicio, fim);
+            boolean diaFechado = false;
 
             String str = "";
             RegistroDAO dao = new RegistroDAO();
             List<Registro> lista = dao.getLista(c.dataSql(inicio), c.dataSql(fim));
             str += "Periodo de " + sd3.format(inicio) + " a " + sd3.format(fim) + "\n\n";
-            str += "Data  " + "Entr  " + "S.Alm " + "V.Alm " + "Saida " + "H.Ext " + "H.Cmp " + "Saidas " + "Trab  " + "Calc" + "\n"; 
-            str += "-----------------------------------------------------------\n";
+            str += "Data   " + "Entr   " + "S.Alm  " + "V.Alm  " + "Saida  " + "H.Ext  " + "Saidas " + "Trab   " + "Calc " + "\n"; 
+                 str += "-------------------------------------------------------------\n";
 
-            int calculado = 0, trabalhado = 0, sobra = 0, perda = 0, horaextra = 0, horaCompensada = 0;
+            int calculado = 0, trabalhado = 0, sobra = 0, perda = 0, horaextra = 0;
             
             for (Registro r : lista) {
-                str += sd2.format(r.getData()) + " "
-                        + c.minToHoraStr(r.getEntrada()) + " "
-                        + c.minToHoraStr(r.getSaidaAlmoco()) + " "
-                        + c.minToHoraStr(r.getVoltaAlmoco()) + " "
-                        + c.minToHoraStr(r.getSaida()) + " "
-                        + c.minToHoraStr(r.getHoraExtra() > 1500 ? 0 : r.getHoraExtra() ) + " "
-                        + c.minToHoraStr(r.getHoraExtra() > 1500 ? r.getHoraExtra() - 1500 : 0  ) + " "
-                        + c.minToHoraStr(r.getSaidas()) + " "
-                        + c.minToHoraStr(r.getTotalTrabalhado()) + " "
+                str += sd2.format(r.getData()) + "  "
+                        + c.minToHoraStr(r.getEntrada()) + "  "
+                        + c.minToHoraStr(r.getSaidaAlmoco()) + "  "
+                        + c.minToHoraStr(r.getVoltaAlmoco()) + "  "
+                        + c.minToHoraStr(r.getSaida()) + "  "
+                        + c.minToHoraStr(r.getHoraExtra() ) + "  "                        
+                        + c.minToHoraStr(r.getSaidas()) + "  "
+                        + c.minToHoraStr(r.getTotalTrabalhado()) + "  "
                         + c.minToHoraStr(r.getTotalCalculado())+"\n";
-                 str += "-----------------------------------------------------------\n";
-                                  
-                 if(!c.isBusinessDay(r.getData()))
-                 {
-                     
-                	 horaextra += r.getTotalCalculado();
-                 }
-                 else
-                 {
-                	if( r.getTotalCalculado() > 480 ){
-                            
-                                if( r.getHoraExtra() > 1500 )                                   
-                                    horaCompensada += r.getTotalCalculado() - 480;                                    
-                                else                           
-                                    horaextra += r.getTotalCalculado() - 480;
-                                
-                	 }
-                	else if( r.getTotalCalculado() < 480 ){
-                		perda += 480 - r.getTotalCalculado();
-                        }
-                 }
+                 str += "-------------------------------------------------------------\n";
                  
-                 calculado += r.getTotalCalculado();
-                 trabalhado += r.getTotalTrabalhado();
+                 if (r.getEntrada()!= 0 && r.getSaidaAlmoco()!= 0 && r.getVoltaAlmoco()!= 0 && r.getSaida()!= 0     ) {
+                    diaFechado = true;
+                }
+                                  
+                if (!c.isBusinessDay(r.getData())) {
+
+                    horaextra += r.getTotalCalculado();
+                    
+                } else {
+                    
+                    if (r.getTotalCalculado() > 480) {
+
+                        horaextra += r.getTotalCalculado() - 480;
+
+                    } else if (r.getTotalCalculado() < 480 && diaFechado) {
+                        
+                        perda += 480 - r.getTotalCalculado();
+                        
+                    }
+                }
+
+                calculado += r.getTotalCalculado();
+                trabalhado += r.getTotalTrabalhado();
             }
             
             sobra = trabalhado - calculado;
             
             int horasPrevistas = new Integer(mapa.get("diasUteis"))*8;
             
-           str += "\nTrabalhado: " + c.minToHoraStr(trabalhado) +" ||  Calculado: "+  c.minToHoraStr(calculado)   + " || H.Extra: " + c.minToHoraStr(horaextra) + "\n" +
-                   "   Devendo: " + c.minToHoraStr(perda)  + " || Compensado: " + c.minToHoraStr(horaCompensada)  + " ||   Saldo: " + c.minToHoraStr(perda - horaCompensada );
-            
-                       
+           str += "\nTrabalhado: " + c.minToHoraStr(trabalhado) +" || "+"Calculado: " + c.minToHoraStr(calculado) +" || " + "Diferenca: " + c.minToHoraStr(trabalhado-calculado) + "\n"
+                   + "   H.Extra: " + c.minToHoraStr(horaextra) +" || "+"  Devendo: "   + c.minToHoraStr(perda);
+                                   
              str +=
                  "\n\n" + mapa.get("sabados") + " Sabado(s)" + " | " + mapa.get("domingos") + " Domingo(s)" + " | " +
-                 "" + mapa.get("feriados") + " Feriado(s)" + " | " +  mapa.get("diasUteis") + " Dia(s)Utei(s)" + "\n" +
+                 "" + mapa.get("feriados") + " Feriado(s)" + " | " +  mapa.get("diasUteis") + " Dia(s)Utei(s)" + "\n" +                     
                      
-                     
-                  "\nPrevisto: " + horasPrevistas  + " Horas"+ "\n"                     
+                  "\nPrevisto: " + horasPrevistas  + " Horas"+ "\n"                  
                   ;
               	    
-                          gerarArquivo(str);     
-//              System.out.println(str);
+             gerarArquivo(str);     
+//             System.out.println(str);
         } catch (SQLException ex) {
             Logger.getLogger(GeraRelatorio.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -125,7 +124,9 @@ public class GeraRelatorio {
             ArrayList<String> feriados = new ArrayList<String>();
             feriados.add("29-03-2013"); // Pascoa
             feriados.add("01-05-2013"); // Dia do Trabalho
-            feriados.add("30-05-2013"); // Corpus christi
+            feriados.add("30-05-2013"); // Corpus christi]
+            feriados.add("25-07-2013"); // JMJ
+            feriados.add("26-07-2013"); // JMJ
             feriados.add("15-11-2013"); // Proclamacao Republica 
             feriados.add("25-12-2013"); // Natal
             feriados.add("01-01-2014"); // Ano Novo
@@ -133,7 +134,7 @@ public class GeraRelatorio {
             feriados.add("18-04-2014"); // Pascoa
             feriados.add("21-04-2014"); // Tiradentes
             feriados.add("01-05-2014"); // Dia do Trabalho
-            feriados.add("19-06-2014"); // Corpus christi
+            feriados.add("19-06-2014"); // Corpus christi            
             feriados.add("25-12-2014"); // Natal
             feriados.add("01-01-2015"); // Ano Novo
             
@@ -188,8 +189,7 @@ public class GeraRelatorio {
          new GeraRelatorio().relatorio(ini, fim);       
                 
     }
-      
-         
+             
          
     
 }

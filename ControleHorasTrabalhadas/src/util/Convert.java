@@ -41,17 +41,7 @@ public class Convert {
 
     public Integer strTimeToMinut(String time) {
         try {
-            /* Gambiarra purra marquei a hora compensada com C para não ter que criar outro campo
-               somei 1500 ao numero de minutos para saber se e extra ou compensação pois a 
-               validação so aceita ate 23:59 que são 1440 minutos mais do que isso e compensação
-               e subtraio 1500 na hora do calculo
-             */ 
-            if (time.contains("C")) {                
-                time =  time.replace("C", "");
-                Integer horas = Integer.parseInt(time.split(":")[0]);
-                Integer minutos = Integer.parseInt(time.split(":")[1]);
-                return (horas * 60) + minutos + 1500;                
-            } else if (!":".equals(time.trim())) {
+            if (!":".equals(time.trim())) {
                 Integer horas = Integer.parseInt(time.split(":")[0]);
                 Integer minutos = Integer.parseInt(time.split(":")[1]);
                 return (horas * 60) + minutos;
@@ -113,7 +103,9 @@ public class Convert {
             ArrayList<String> feriados = new ArrayList<String>();
             feriados.add("29-03-2013"); // Pascoa
             feriados.add("01-05-2013"); // Dia do Trabalho
-            feriados.add("30-05-2013"); // Corpus christi
+            feriados.add("30-05-2013"); // Corpus christi]
+            feriados.add("25-07-2013"); // JMJ
+            feriados.add("26-07-2013"); // JMJ
             feriados.add("15-11-2013"); // Proclamacao Republica 
             feriados.add("25-12-2013"); // Natal
             feriados.add("01-01-2014"); // Ano Novo
@@ -121,7 +113,7 @@ public class Convert {
             feriados.add("18-04-2014"); // Pascoa
             feriados.add("21-04-2014"); // Tiradentes
             feriados.add("01-05-2014"); // Dia do Trabalho
-            feriados.add("19-06-2014"); // Corpus christi
+            feriados.add("19-06-2014"); // Corpus christi            
             feriados.add("25-12-2014"); // Natal
             feriados.add("01-01-2015"); // Ano Novo
 
