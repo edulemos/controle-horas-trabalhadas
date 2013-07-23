@@ -151,8 +151,9 @@ public class MainFrame extends javax.swing.JFrame {
 
             label_calculado.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
             label_calculado.setText("CALCULADO");
+            label_calculado.setOpaque(true);
             getContentPane().add(label_calculado);
-            label_calculado.setBounds(306, 77, 85, 15);
+            label_calculado.setBounds(306, 73, 85, 15);
 
             label_saidaalmoco.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
             label_saidaalmoco.setText("SAÍDA ALMOÇO");
@@ -174,9 +175,10 @@ public class MainFrame extends javax.swing.JFrame {
 
             label_horaextra.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
             label_horaextra.setText("H. EXTRA APROV");
+            label_horaextra.setOpaque(true);
             label_horaextra.setVerifyInputWhenFocusTarget(false);
             getContentPane().add(label_horaextra);
-            label_horaextra.setBounds(11, 77, 85, 15);
+            label_horaextra.setBounds(11, 73, 85, 15);
 
             jDate_ate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
             jDate_ate.setDateFormatString(" dd/MM/yyyy");
@@ -251,25 +253,27 @@ public class MainFrame extends javax.swing.JFrame {
             field_trabalhado_dia.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
             field_trabalhado_dia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
             getContentPane().add(field_trabalhado_dia);
-            field_trabalhado_dia.setBounds(207, 90, 89, 20);
+            field_trabalhado_dia.setBounds(207, 86, 89, 20);
 
             field_calculado_dia.setEditable(false);
             field_calculado_dia.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
             field_calculado_dia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
             field_calculado_dia.setVerifyInputWhenFocusTarget(false);
             getContentPane().add(field_calculado_dia);
-            field_calculado_dia.setBounds(306, 90, 89, 20);
+            field_calculado_dia.setBounds(306, 86, 89, 20);
 
             label_saidas.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
             label_saidas.setText("SAÍDAS");
+            label_saidas.setOpaque(true);
             label_saidas.setRequestFocusEnabled(false);
             getContentPane().add(label_saidas);
-            label_saidas.setBounds(109, 77, 85, 15);
+            label_saidas.setBounds(109, 73, 85, 15);
 
             label_entrada3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
             label_entrada3.setText("TRABALHADO");
+            label_entrada3.setOpaque(true);
             getContentPane().add(label_entrada3);
-            label_entrada3.setBounds(207, 77, 85, 15);
+            label_entrada3.setBounds(207, 73, 85, 15);
 
             label_entrada2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
             label_entrada2.setText("CALCULADO");
@@ -447,7 +451,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
             getContentPane().add(jCombo_horaExtra);
-            jCombo_horaExtra.setBounds(11, 90, 40, 20);
+            jCombo_horaExtra.setBounds(11, 86, 40, 20);
 
             jCombo_minutoExtra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
             jCombo_minutoExtra.setBorder(null);
@@ -459,14 +463,14 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
             getContentPane().add(jCombo_minutoExtra);
-            jCombo_minutoExtra.setBounds(59, 90, 40, 20);
+            jCombo_minutoExtra.setBounds(59, 86, 40, 20);
 
             jl_ponto_ent6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
             jl_ponto_ent6.setText(":");
             jl_ponto_ent6.setFocusable(false);
             jl_ponto_ent6.setVerifyInputWhenFocusTarget(false);
             getContentPane().add(jl_ponto_ent6);
-            jl_ponto_ent6.setBounds(53, 90, 20, 20);
+            jl_ponto_ent6.setBounds(53, 86, 20, 20);
 
             jCombo_horaSaidas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", " ", " " }));
             jCombo_horaSaidas.setBorder(null);
@@ -478,7 +482,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
             getContentPane().add(jCombo_horaSaidas);
-            jCombo_horaSaidas.setBounds(109, 90, 40, 20);
+            jCombo_horaSaidas.setBounds(109, 86, 40, 20);
 
             jCombo_minutoEntrada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
             jCombo_minutoEntrada.setBorder(null);
@@ -496,7 +500,7 @@ public class MainFrame extends javax.swing.JFrame {
             jl_ponto_ent8.setRequestFocusEnabled(false);
             jl_ponto_ent8.setVerifyInputWhenFocusTarget(false);
             getContentPane().add(jl_ponto_ent8);
-            jl_ponto_ent8.setBounds(151, 90, 10, 20);
+            jl_ponto_ent8.setBounds(151, 86, 10, 20);
 
             jButton_deletar.setText("Deletar");
             jButton_deletar.setVerifyInputWhenFocusTarget(false);
@@ -506,7 +510,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
             getContentPane().add(jButton_deletar);
-            jButton_deletar.setBounds(273, 116, 120, 20);
+            jButton_deletar.setBounds(273, 113, 120, 20);
 
             button_limpar.setText("Limpar");
             button_limpar.setSelected(true);
@@ -517,7 +521,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
             getContentPane().add(button_limpar);
-            button_limpar.setBounds(143, 116, 120, 20);
+            button_limpar.setBounds(143, 113, 120, 20);
 
             button_gravar.setText("Gravar");
             button_gravar.setVerifyInputWhenFocusTarget(false);
@@ -527,7 +531,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
             getContentPane().add(button_gravar);
-            button_gravar.setBounds(13, 116, 120, 20);
+            button_gravar.setBounds(13, 113, 120, 20);
 
             jCombo_minutoSaidas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
             jCombo_minutoSaidas.setBorder(null);
@@ -538,7 +542,7 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             });
             getContentPane().add(jCombo_minutoSaidas);
-            jCombo_minutoSaidas.setBounds(157, 90, 40, 20);
+            jCombo_minutoSaidas.setBounds(157, 86, 40, 20);
 
             setSize(new java.awt.Dimension(415, 524));
             setLocationRelativeTo(null);
@@ -553,7 +557,7 @@ public class MainFrame extends javax.swing.JFrame {
         voltaAlmoco = getHoraCombo(jCombo_horaVoltaAlmoco, jCombo_minutoVoltaAlmoco);
         saida = getHoraCombo(jCombo_horaSaida, jCombo_MinutoSaida);
         horaExtra = getHoraCombo(jCombo_horaExtra, jCombo_minutoExtra);
-        saidas = getHoraCombo(jCombo_horaSaidas, jCombo_minutoEntrada);
+        saidas = getHoraCombo(jCombo_horaSaidas, jCombo_minutoSaidas);
 
         erros = validate.validaFields(data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);
 
@@ -888,7 +892,11 @@ public class MainFrame extends javax.swing.JFrame {
     
     public void avisoBackup() {
         Date dataDeHoje = new Date();
-        if (1 == dataDeHoje.getDay()) {
+        if (1 == dataDeHoje.getDate() && (0 != dataDeHoje.getDay() && 6 != dataDeHoje.getDay())) {
+            JOptionPane.showMessageDialog(null, "       LEMBRETE DE BACKUP \n Para fazer o backup dos dados\n salve a pasta db que se encontra\n dentro do diretorio de instalação.");
+        } else if (2 == dataDeHoje.getDate() && (0 != dataDeHoje.getDay() && 6 != dataDeHoje.getDay())) {
+            JOptionPane.showMessageDialog(null, "       LEMBRETE DE BACKUP \n Para fazer o backup dos dados\n salve a pasta db que se encontra\n dentro do diretorio de instalação.");
+        } else if (3 == dataDeHoje.getDate() && (0 != dataDeHoje.getDay() && 6 != dataDeHoje.getDay())) {
             JOptionPane.showMessageDialog(null, "       LEMBRETE DE BACKUP \n Para fazer o backup dos dados\n salve a pasta db que se encontra\n dentro do diretorio de instalação.");
         }
     }
