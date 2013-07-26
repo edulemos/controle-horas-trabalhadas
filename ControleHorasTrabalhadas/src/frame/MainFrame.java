@@ -635,7 +635,7 @@ public class MainFrame extends javax.swing.JFrame {
                 jCombo_minutoExtra.setSelectedItem(jTable1.getValueAt(linha, 6).toString().split(":")[1]);
 
                 jCombo_horaSaidas.setSelectedItem(jTable1.getValueAt(linha, 7).toString().split(":")[0]);
-                jCombo_minutoEntrada.setSelectedItem(jTable1.getValueAt(linha, 7).toString().split(":")[1]);
+                jCombo_minutoSaidas.setSelectedItem(jTable1.getValueAt(linha, 7).toString().split(":")[1]);
 
                 field_trabalhado_dia.setText(jTable1.getValueAt(linha, 8).toString());
                 field_calculado_dia.setText(jTable1.getValueAt(linha, 9).toString());
