@@ -112,7 +112,7 @@ public class NumPad extends javax.swing.JFrame {
                 formWindowLostFocus(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         jButtonH51.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH51.setText("51");
@@ -121,7 +121,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH51MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH51, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 108, 45, 18));
+        getContentPane().add(jButtonH51);
+        jButtonH51.setBounds(0, 108, 45, 18);
 
         jButtonH1.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH1.setText("01");
@@ -130,7 +131,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH1MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 18, 45, 18));
+        getContentPane().add(jButtonH1);
+        jButtonH1.setBounds(0, 18, 45, 18);
 
         jButtonH11.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH11.setText("11");
@@ -139,7 +141,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH11MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 36, 45, 18));
+        getContentPane().add(jButtonH11);
+        jButtonH11.setBounds(0, 36, 45, 18);
 
         jButtonH21.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH21.setText("21");
@@ -148,7 +151,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH21MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH21, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 54, 45, 18));
+        getContentPane().add(jButtonH21);
+        jButtonH21.setBounds(0, 54, 45, 18);
 
         jButtonH31.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH31.setText("31");
@@ -157,7 +161,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH31MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 72, 45, 18));
+        getContentPane().add(jButtonH31);
+        jButtonH31.setBounds(0, 72, 45, 18);
 
         jButtonH41.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH41.setText("41");
@@ -166,7 +171,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH41MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH41, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 45, 18));
+        getContentPane().add(jButtonH41);
+        jButtonH41.setBounds(0, 90, 45, 18);
 
         jButtonH52.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH52.setText("52");
@@ -175,7 +181,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH52MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH52, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 108, 45, 18));
+        getContentPane().add(jButtonH52);
+        jButtonH52.setBounds(45, 108, 45, 18);
 
         jButtonH42.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH42.setText("42");
@@ -184,7 +191,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH42MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH42, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 90, 45, 18));
+        getContentPane().add(jButtonH42);
+        jButtonH42.setBounds(45, 90, 45, 18);
 
         jButtonH32.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH32.setText("32");
@@ -193,7 +201,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH32MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH32, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 72, 45, 18));
+        getContentPane().add(jButtonH32);
+        jButtonH32.setBounds(45, 72, 45, 18);
 
         jButtonH22.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH22.setText("22");
@@ -202,7 +211,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH22MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH22, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 54, 45, 18));
+        getContentPane().add(jButtonH22);
+        jButtonH22.setBounds(45, 54, 45, 18);
 
         jButtonH12.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH12.setText("12");
@@ -211,7 +221,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH12MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH12, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 36, 45, 18));
+        getContentPane().add(jButtonH12);
+        jButtonH12.setBounds(45, 36, 45, 18);
 
         jButtonH2.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH2.setText("02");
@@ -220,7 +231,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH2MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 18, 45, 18));
+        getContentPane().add(jButtonH2);
+        jButtonH2.setBounds(45, 18, 45, 18);
 
         jButtonH3.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH3.setText("03");
@@ -229,7 +241,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH3MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 18, 45, 18));
+        getContentPane().add(jButtonH3);
+        jButtonH3.setBounds(90, 18, 45, 18);
 
         jButtonH13.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH13.setText("13");
@@ -238,7 +251,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH13MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 36, 45, 18));
+        getContentPane().add(jButtonH13);
+        jButtonH13.setBounds(90, 36, 45, 18);
 
         jButtonH14.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH14.setText("14");
@@ -247,7 +261,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH14MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH14, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 36, 45, 18));
+        getContentPane().add(jButtonH14);
+        jButtonH14.setBounds(135, 36, 45, 18);
 
         jButtonH4.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH4.setText("04");
@@ -256,7 +271,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH4MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH4, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 18, 45, 18));
+        getContentPane().add(jButtonH4);
+        jButtonH4.setBounds(135, 18, 45, 18);
 
         jButtonH5.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH5.setText("05");
@@ -265,7 +281,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH5MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 18, 45, 18));
+        getContentPane().add(jButtonH5);
+        jButtonH5.setBounds(180, 18, 45, 18);
 
         jButtonH15.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH15.setText("15");
@@ -274,7 +291,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH15MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 36, 45, 18));
+        getContentPane().add(jButtonH15);
+        jButtonH15.setBounds(180, 36, 45, 18);
 
         jButtonH6.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH6.setText("06");
@@ -283,7 +301,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH6MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH6, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 18, 45, 18));
+        getContentPane().add(jButtonH6);
+        jButtonH6.setBounds(225, 18, 45, 18);
 
         jButtonH16.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH16.setText("16");
@@ -292,7 +311,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH16MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH16, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 36, 45, 18));
+        getContentPane().add(jButtonH16);
+        jButtonH16.setBounds(225, 36, 45, 18);
 
         jButtonH17.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH17.setText("17");
@@ -301,7 +321,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH17MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH17, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 36, 45, 18));
+        getContentPane().add(jButtonH17);
+        jButtonH17.setBounds(270, 36, 45, 18);
 
         jButtonH7.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH7.setText("07");
@@ -311,7 +332,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH7MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 18, 45, 18));
+        getContentPane().add(jButtonH7);
+        jButtonH7.setBounds(270, 18, 45, 18);
 
         jButtonH8.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH8.setText("08");
@@ -320,7 +342,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH8MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH8, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 18, 45, 18));
+        getContentPane().add(jButtonH8);
+        jButtonH8.setBounds(315, 18, 45, 18);
 
         jButtonH18.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH18.setText("18");
@@ -329,7 +352,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH18MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH18, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 36, 45, 18));
+        getContentPane().add(jButtonH18);
+        jButtonH18.setBounds(315, 36, 45, 18);
 
         jButtonH9.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH9.setText("09");
@@ -338,7 +362,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH9MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 18, 45, 18));
+        getContentPane().add(jButtonH9);
+        jButtonH9.setBounds(360, 18, 45, 18);
 
         jButtonH19.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH19.setText("19");
@@ -347,7 +372,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH19MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH19, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 36, 45, 18));
+        getContentPane().add(jButtonH19);
+        jButtonH19.setBounds(360, 36, 45, 18);
 
         jButtonH10.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH10.setText("10");
@@ -356,7 +382,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH10MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH10, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 18, 45, 18));
+        getContentPane().add(jButtonH10);
+        jButtonH10.setBounds(405, 18, 45, 18);
 
         jButtonH23.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH23.setText("23");
@@ -365,7 +392,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH23MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH23, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 54, 45, 18));
+        getContentPane().add(jButtonH23);
+        jButtonH23.setBounds(90, 54, 45, 18);
 
         jButtonH33.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH33.setText("33");
@@ -374,7 +402,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH33MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH33, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 72, 45, 18));
+        getContentPane().add(jButtonH33);
+        jButtonH33.setBounds(90, 72, 45, 18);
 
         jButtonH43.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH43.setText("43");
@@ -383,7 +412,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH43MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH43, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 45, 18));
+        getContentPane().add(jButtonH43);
+        jButtonH43.setBounds(90, 90, 45, 18);
 
         jButtonH53.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH53.setText("53");
@@ -392,7 +422,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH53MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH53, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 108, 45, 18));
+        getContentPane().add(jButtonH53);
+        jButtonH53.setBounds(90, 108, 45, 18);
 
         jButtonH54.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH54.setText("54");
@@ -401,7 +432,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH54MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH54, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 108, 45, 18));
+        getContentPane().add(jButtonH54);
+        jButtonH54.setBounds(135, 108, 45, 18);
 
         jButtonH44.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH44.setText("44");
@@ -410,7 +442,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH44MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH44, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 90, 45, 18));
+        getContentPane().add(jButtonH44);
+        jButtonH44.setBounds(135, 90, 45, 18);
 
         jButtonH34.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH34.setText("34");
@@ -419,7 +452,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH34MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH34, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 72, 45, 18));
+        getContentPane().add(jButtonH34);
+        jButtonH34.setBounds(135, 72, 45, 18);
 
         jButtonH24.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH24.setText("24");
@@ -428,7 +462,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH24MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH24, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 54, 45, 18));
+        getContentPane().add(jButtonH24);
+        jButtonH24.setBounds(135, 54, 45, 18);
 
         jButtonH25.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH25.setText("25");
@@ -437,7 +472,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH25MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH25, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 54, 45, 18));
+        getContentPane().add(jButtonH25);
+        jButtonH25.setBounds(180, 54, 45, 18);
 
         jButtonH35.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH35.setText("35");
@@ -446,7 +482,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH35MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH35, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 72, 45, 18));
+        getContentPane().add(jButtonH35);
+        jButtonH35.setBounds(180, 72, 45, 18);
 
         jButtonH45.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH45.setText("45");
@@ -455,7 +492,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH45MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH45, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 45, 18));
+        getContentPane().add(jButtonH45);
+        jButtonH45.setBounds(180, 90, 45, 18);
 
         jButtonH55.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH55.setText("55");
@@ -464,7 +502,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH55MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH55, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 108, 45, 18));
+        getContentPane().add(jButtonH55);
+        jButtonH55.setBounds(180, 108, 45, 18);
 
         jButtonH56.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH56.setText("56");
@@ -473,7 +512,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH56MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH56, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 108, 45, 18));
+        getContentPane().add(jButtonH56);
+        jButtonH56.setBounds(225, 108, 45, 18);
 
         jButtonH46.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH46.setText("46");
@@ -482,7 +522,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH46MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH46, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 90, 45, 18));
+        getContentPane().add(jButtonH46);
+        jButtonH46.setBounds(225, 90, 45, 18);
 
         jButtonH36.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH36.setText("36");
@@ -491,7 +532,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH36MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH36, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 72, 45, 18));
+        getContentPane().add(jButtonH36);
+        jButtonH36.setBounds(225, 72, 45, 18);
 
         jButtonH26.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH26.setText("26");
@@ -500,7 +542,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH26MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH26, new org.netbeans.lib.awtextra.AbsoluteConstraints(225, 54, 45, 18));
+        getContentPane().add(jButtonH26);
+        jButtonH26.setBounds(225, 54, 45, 18);
 
         jButtonH27.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH27.setText("27");
@@ -509,7 +552,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH27MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH27, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 54, 45, 18));
+        getContentPane().add(jButtonH27);
+        jButtonH27.setBounds(270, 54, 45, 18);
 
         jButtonH37.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH37.setText("37");
@@ -518,7 +562,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH37MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH37, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 72, 45, 18));
+        getContentPane().add(jButtonH37);
+        jButtonH37.setBounds(270, 72, 45, 18);
 
         jButtonH47.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH47.setText("47");
@@ -527,7 +572,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH47MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH47, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 45, 18));
+        getContentPane().add(jButtonH47);
+        jButtonH47.setBounds(270, 90, 45, 18);
 
         jButtonH57.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH57.setText("57");
@@ -536,7 +582,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH57MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH57, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 108, 45, 18));
+        getContentPane().add(jButtonH57);
+        jButtonH57.setBounds(270, 108, 45, 18);
 
         jButtonH58.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH58.setText("58");
@@ -545,7 +592,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH58MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH58, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 108, 45, 18));
+        getContentPane().add(jButtonH58);
+        jButtonH58.setBounds(315, 108, 45, 18);
 
         jButtonH48.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH48.setText("48");
@@ -554,7 +602,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH48MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH48, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 90, 45, 18));
+        getContentPane().add(jButtonH48);
+        jButtonH48.setBounds(315, 90, 45, 18);
 
         jButtonH38.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH38.setText("38");
@@ -563,7 +612,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH38MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH38, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 72, 45, 18));
+        getContentPane().add(jButtonH38);
+        jButtonH38.setBounds(315, 72, 45, 18);
 
         jButtonH28.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH28.setText("28");
@@ -572,7 +622,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH28MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH28, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 54, 45, 18));
+        getContentPane().add(jButtonH28);
+        jButtonH28.setBounds(315, 54, 45, 18);
 
         jButtonH29.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH29.setText("29");
@@ -581,7 +632,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH29MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH29, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 54, 45, 18));
+        getContentPane().add(jButtonH29);
+        jButtonH29.setBounds(360, 54, 45, 18);
 
         jButtonH39.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH39.setText("39");
@@ -590,7 +642,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH39MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH39, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 72, 45, 18));
+        getContentPane().add(jButtonH39);
+        jButtonH39.setBounds(360, 72, 45, 18);
 
         jButtonH49.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH49.setText("49");
@@ -599,7 +652,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH49MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH49, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, 45, 18));
+        getContentPane().add(jButtonH49);
+        jButtonH49.setBounds(360, 90, 45, 18);
 
         jButtonH00.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH00.setText("00");
@@ -608,7 +662,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH00MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH00, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 108, 45, 18));
+        getContentPane().add(jButtonH00);
+        jButtonH00.setBounds(405, 108, 45, 18);
 
         jButtonH50.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH50.setText("50");
@@ -617,7 +672,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH50MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH50, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 90, 45, 18));
+        getContentPane().add(jButtonH50);
+        jButtonH50.setBounds(405, 90, 45, 18);
 
         jButtonH40.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH40.setText("40");
@@ -626,7 +682,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH40MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH40, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 72, 45, 18));
+        getContentPane().add(jButtonH40);
+        jButtonH40.setBounds(405, 72, 45, 18);
 
         jButtonH20.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH20.setText("20");
@@ -635,7 +692,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH20MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH20, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 36, 45, 18));
+        getContentPane().add(jButtonH20);
+        jButtonH20.setBounds(405, 36, 45, 18);
 
         jButtonH59.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH59.setText("59");
@@ -644,7 +702,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH59MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH59, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 108, 45, 18));
+        getContentPane().add(jButtonH59);
+        jButtonH59.setBounds(360, 108, 45, 18);
 
         jButtonH30.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
         jButtonH30.setText("30");
@@ -653,7 +712,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButtonH30MouseClicked(evt);
             }
         });
-        getContentPane().add(jButtonH30, new org.netbeans.lib.awtextra.AbsoluteConstraints(405, 54, 45, 18));
+        getContentPane().add(jButtonH30);
+        jButtonH30.setBounds(405, 54, 45, 18);
 
         jButton_gravar.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton_gravar.setText("GRAVAR");
@@ -663,7 +723,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButton_gravarMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton_gravar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, 90, 18));
+        getContentPane().add(jButton_gravar);
+        jButton_gravar.setBounds(360, 0, 90, 18);
 
         jButton_saida.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton_saida.setText("SAIDA");
@@ -673,7 +734,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButton_saidaMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton_saida, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 90, 18));
+        getContentPane().add(jButton_saida);
+        jButton_saida.setBounds(270, 0, 90, 18);
 
         jButton_volta_alm.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton_volta_alm.setText("V. ALM");
@@ -683,7 +745,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButton_volta_almMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton_volta_alm, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 90, 18));
+        getContentPane().add(jButton_volta_alm);
+        jButton_volta_alm.setBounds(180, 0, 90, 18);
 
         jButton_saida_alm.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton_saida_alm.setText("S. ALM");
@@ -693,7 +756,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButton_saida_almMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton_saida_alm, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 90, 18));
+        getContentPane().add(jButton_saida_alm);
+        jButton_saida_alm.setBounds(90, 0, 90, 18);
 
         jButton_entrada.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton_entrada.setText("ENTRADA");
@@ -703,7 +767,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButton_entradaMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 18));
+        getContentPane().add(jButton_entrada);
+        jButton_entrada.setBounds(0, 0, 90, 18);
 
         jButton_deletar.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton_deletar.setText("DELETAR");
@@ -714,7 +779,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButton_deletarMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton_deletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 126, 90, 18));
+        getContentPane().add(jButton_deletar);
+        jButton_deletar.setBounds(180, 126, 90, 18);
 
         jButton_fechar.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton_fechar.setText("FECHAR");
@@ -725,7 +791,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButton_fecharMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton_fechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 126, 90, 18));
+        getContentPane().add(jButton_fechar);
+        jButton_fechar.setBounds(360, 126, 90, 18);
 
         jButton_saidas.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton_saidas.setText("SAIDAS");
@@ -736,7 +803,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButton_saidasMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton_saidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 126, 90, 18));
+        getContentPane().add(jButton_saidas);
+        jButton_saidas.setBounds(90, 126, 90, 18);
 
         jButton_hora_extra.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton_hora_extra.setText("H.EXTRA");
@@ -747,7 +815,8 @@ public class NumPad extends javax.swing.JFrame {
                 jButton_hora_extraMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton_hora_extra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 126, 90, 18));
+        getContentPane().add(jButton_hora_extra);
+        jButton_hora_extra.setBounds(0, 126, 90, 18);
 
         jButton_limpar_campo1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton_limpar_campo1.setText("LIMPAR");
@@ -758,9 +827,10 @@ public class NumPad extends javax.swing.JFrame {
                 jButton_limpar_campo1MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton_limpar_campo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 126, 90, 18));
+        getContentPane().add(jButton_limpar_campo1);
+        jButton_limpar_campo1.setBounds(270, 126, 90, 18);
 
-        setSize(new java.awt.Dimension(465, 181));
+        setSize(new java.awt.Dimension(465, 182));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

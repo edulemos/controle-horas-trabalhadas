@@ -377,7 +377,7 @@ public class MainFrame extends javax.swing.JFrame {
             getContentPane().add(jTextField_calculado);
             jTextField_calculado.setBounds(325, 100, 100, 25);
 
-            setSize(new java.awt.Dimension(446, 528));
+            setSize(new java.awt.Dimension(444, 528));
             setLocationRelativeTo(null);
         }// </editor-fold>//GEN-END:initComponents
 

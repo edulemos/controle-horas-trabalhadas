@@ -76,15 +76,15 @@ public class GeraRelatorio {
             
             int horasPrevistas = new Integer(mapa.get("diasUteis"))*8;
             
-           str += "\nTrabalhado: " + c.minToHoraStr(trabalhado) +" || "+"Calculado: " + c.minToHoraStr(calculado) +" || " + "Diferenca: " + c.minToHoraStr(trabalhado-calculado) + "\n"
-                   + "   H.Extra: " + c.minToHoraStr(horaextra) +" || "+"  Devendo: "   + c.minToHoraStr(perda);
+                            
                                    
-             str +=
-                 "\n\n" + mapa.get("sabados") + " Sabado(s)" + " | " + mapa.get("domingos") + " Domingo(s)" + " | " +
-                 "" + mapa.get("feriados") + " Feriado(s)" + " | " +  mapa.get("diasUteis") + " Dia(s)Utei(s)" + "\n" +                     
-                     
-                  "\nPrevisto: " + horasPrevistas  + " Horas"+ "\n"                  
+                str+=  "\nPrevisto Periodo: " + c.minToHoraStr((horasPrevistas*60))+ "   Trabalhado: " + c.minToHoraStr(trabalhado)+
+                  "\nHoras Extras: " + c.minToHoraStr(horaextra)  + "        Calculado: " + c.minToHoraStr(calculado) +
+                  "\nPerdas: " + c.minToHoraStr(perda) + "              Diferenca: " + c.minToHoraStr(trabalhado-calculado) +
+                  "\nPrevisto Final: " +c.minToHoraStr((horasPrevistas*60)+horaextra-perda )
+
                   ;
+                 
               	    
              gerarArquivo(str);     
 //             System.out.println(str);
