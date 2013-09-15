@@ -75,12 +75,10 @@ public class GeraRelatorio {
             sobra = trabalhado - calculado;
             
             int horasPrevistas = new Integer(mapa.get("diasUteis"))*8;
-            
-                            
                                    
-                str+=  "\nPrevisto Periodo: " + c.minToHoraStr((horasPrevistas*60))+ "   Trabalhado: " + c.minToHoraStr(trabalhado)+
-                  "\nHoras Extras: " + c.minToHoraStr(horaextra)  + "        Calculado: " + c.minToHoraStr(calculado) +
-                  "\nPerdas: " + c.minToHoraStr(perda) + "              Diferenca: " + c.minToHoraStr(trabalhado-calculado) +
+                str+=  "\nPrevisto Periodo: " + c.minToHoraStr((horasPrevistas*60))+ "      Trabalhado: " + c.minToHoraStr(trabalhado)+
+                  "\nHoras Extras: " + c.minToHoraStr(horaextra)  + "           Calculado: " + c.minToHoraStr(calculado) +
+                  "\nPerdas: " + c.minToHoraStr(perda) + "                 Diferenca: " + c.minToHoraStr(trabalhado-calculado) +
                   "\nPrevisto Final: " +c.minToHoraStr((horasPrevistas*60)+horaextra-perda )
 
                   ;

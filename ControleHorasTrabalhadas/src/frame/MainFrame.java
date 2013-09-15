@@ -404,6 +404,7 @@ public class MainFrame extends javax.swing.JFrame {
                 if (opcao_escolhida == JOptionPane.YES_OPTION) {
                     dao().editar(converte.strToObj(new Integer(id), data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas, data));
                 }
+                recarregarAtual(0);          
             } else {
                 try {
                     if (!dao().verificaDuplicado(converte.dataSql(data))) {
@@ -412,6 +413,7 @@ public class MainFrame extends javax.swing.JFrame {
                         if (opcao_escolhida == JOptionPane.YES_OPTION) {
                             dao().save(converte.strToObj(null, data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas, data));
                         }
+                        recarregarAtual(3);          
                     } else {
                         JOptionPane.showMessageDialog(null, "Data já Cadastrada!");
                     }
@@ -442,7 +444,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         if (linhasum >= 1) {
             try {
-                this.id = jTable1.getValueAt(linha, 0).toString();
                 jDate_data.setDate(sdf.parse(jTable1.getValueAt(linha, 1).toString()));
                 jTextField_hora_entrada.setText(jTable1.getValueAt(linha, 2).toString());                
                 jTextFiel_saida_almoco.setText(jTable1.getValueAt(linha, 3).toString());                
@@ -451,7 +452,10 @@ public class MainFrame extends javax.swing.JFrame {
                 jTextField_hora_extra.setText(jTable1.getValueAt(linha, 6).toString());
                 jTextField_hora_saidas.setText(jTable1.getValueAt(linha, 7).toString());
                 jTextField_trabalhado.setText(jTable1.getValueAt(linha, 8).toString());                
-                jTextField_calculado.setText(jTable1.getValueAt(linha, 9).toString());                 
+                jTextField_calculado.setText(jTable1.getValueAt(linha, 9).toString());      
+                this.id = jTable1.getValueAt(linha, 0).toString();
+
+                                
 
             } catch (ParseException ex) {
                 Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -723,7 +727,11 @@ public class MainFrame extends javax.swing.JFrame {
 
             registro1 = dao().getRegistroBydate(new java.sql.Date(new java.util.Date().getTime()));
             
-        } else if (null != this.id  && !"" .equals(this.id)) {
+        } else if (fl_date == 3) {
+            
+            registro1 = dao().getRegistroBydate(converte.dataSql(data));
+            
+        }else if (null != this.id  && !"" .equals(this.id)) {
             
             registro1 = dao().getRegistro(this.id);
             

@@ -779,11 +779,6 @@ public class NumPad extends javax.swing.JFrame {
                 jButton_deletarMouseClicked(evt);
             }
         });
-        jButton_deletar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_deletarActionPerformed(evt);
-            }
-        });
         getContentPane().add(jButton_deletar);
         jButton_deletar.setBounds(180, 126, 90, 18);
 
@@ -835,8 +830,8 @@ public class NumPad extends javax.swing.JFrame {
         getContentPane().add(jButton_limpar_campo1);
         jButton_limpar_campo1.setBounds(270, 126, 90, 18);
 
-        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-465)/2, (screenSize.height-182)/2, 465, 182);
+        setSize(new java.awt.Dimension(465, 182));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonH1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonH1MouseClicked
@@ -1164,10 +1159,6 @@ public class NumPad extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton_limpar_campo1MouseClicked
-
-    private void jButton_deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deletarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_deletarActionPerformed
     
    private void setText(String valor){
     
