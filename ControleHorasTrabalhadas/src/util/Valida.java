@@ -9,10 +9,22 @@ public class Valida{
         String erros = "";       
         if(data == null)erros += "Data Inválida!\n";
         if(data.after(new Date()))erros += "Data Selecionada maior do que a data atual!\n";
-        if("00:00".equals(entrada.trim())) erros += "Hora de Entrada Obrigatório!\n";
+        if(entrada.length() != 5) erros += "Hora Entrada Obrigatória!\n";
+        if(!horaOK(saidaAlmoco)) erros += "Hora Saída Almoço Inválida!\n";
+        if(!horaOK(voltaAlmoco)) erros += "Hora Volta Almoço Inválida!\n";
+        if(!horaOK(saida))  erros += "Hora Saída Inválida!\n";
+        if(!horaOK(horaExtra))  erros += "Hora Extra Inválida!\n";
+        if(!horaOK(saidas))  erros += "Hora Saídas Inválida!\n";
         
         return erros;
     }
+        
+    public boolean horaOK(String hora){    
+        if(null == hora || (hora.length() > 0 && hora.length() != 5))
+            return false;
+        else
+            return true;
+    }    
     
     public String validaDatas(Date dataini, Date datafim) {        
         String erros = "";       

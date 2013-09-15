@@ -54,20 +54,22 @@ public class Calc {
             compensacao = 15;
         }
 
+                
         //caso trabalhado - de 8hs aplica as compensações
         if (calculado < 480) {
             calculado += compensacao;
         }
-
-        // saiu antes de 18:00 desconta o excedente
-        if (minSaida < 1080) {
-            calculado -= 1080 - minSaida;
-        }
-
+        
         //caso trabalho + compensacao ultrapasse 480 
         if (calculado > 480) {
             calculado = 480;
         }
+        
+        // saiu antes de 18:00 desconta 
+        if (minSaida < 1080) {
+            calculado -= 1080 - minSaida;
+        }
+       
 
         //total do dia
         trabalhado = trabalhado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);

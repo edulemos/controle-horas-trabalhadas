@@ -106,9 +106,9 @@ private int prm;
             PreparedStatement stmt = this.con.prepareStatement( sql );
             stmt.setDate( 1, dt_ini );
             stmt.setDate( 2, dt_fim );
-            ResultSet rs = stmt.executeQuery( );            
-            while ( rs.next( ) ){
-                Registro registro = new Registro( );          
+            ResultSet rs = stmt.executeQuery( ); 
+             while ( rs.next( ) ){
+                Registro  registro = new Registro( );          
                 registro.setId( rs.getInt( "ID" ) );
                 registro.setData( rs.getDate( "DATA_REGISTRO" ) );
                 registro.setEntrada( rs.getInt( "ENTRADA" ) );
@@ -186,6 +186,62 @@ private int prm;
             rs.close();
             stmt.close();
             return mapa;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Registro getRegistro(String id) {
+         String sql = "SELECT * FROM REGISTRO WHERE id = ?";
+        try {
+            PreparedStatement stmt = this.con.prepareStatement( sql );
+            stmt.setInt(1, new Integer(id) );
+            ResultSet rs = stmt.executeQuery( );            
+            Registro registro = null;
+            while ( rs.next( ) ){
+                registro= new Registro( );          
+                registro.setId( rs.getInt( "ID" ) );
+                registro.setData( rs.getDate( "DATA_REGISTRO" ) );
+                registro.setEntrada( rs.getInt( "ENTRADA" ) );
+                registro.setSaidaAlmoco( rs.getInt( "SAIDA_ALMOCO" ) );
+                registro.setVoltaAlmoco( rs.getInt( "VOLTA_ALMOCO" ) );
+                registro.setSaida( rs.getInt( "SAIDA" ) );
+                registro.setHoraExtra( rs.getInt( "HORA_EXTRA" ) );
+                registro.setSaidas( rs.getInt( "SAIDAS" ) );
+                registro.setTotalTrabalhado( rs.getInt( "TOTAL_TRABALHADO" ) );
+                registro.setTotalCalculado( rs.getInt( "TOTAL_CALCULADO" ) );
+            }
+            rs.close();
+            stmt.close();            
+            return registro;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public Registro getRegistroBydate(Date data) {
+         String sql = "SELECT * FROM REGISTRO WHERE DATA_REGISTRO = ?";
+        try {
+            PreparedStatement stmt = this.con.prepareStatement( sql );
+            stmt.setDate( 1, data );
+            ResultSet rs = stmt.executeQuery( );            
+            Registro registro = null;
+            while ( rs.next( ) ){
+                registro= new Registro( );          
+                registro.setId( rs.getInt( "ID" ) );
+                registro.setData( rs.getDate( "DATA_REGISTRO" ) );
+                registro.setEntrada( rs.getInt( "ENTRADA" ) );
+                registro.setSaidaAlmoco( rs.getInt( "SAIDA_ALMOCO" ) );
+                registro.setVoltaAlmoco( rs.getInt( "VOLTA_ALMOCO" ) );
+                registro.setSaida( rs.getInt( "SAIDA" ) );
+                registro.setHoraExtra( rs.getInt( "HORA_EXTRA" ) );
+                registro.setSaidas( rs.getInt( "SAIDAS" ) );
+                registro.setTotalTrabalhado( rs.getInt( "TOTAL_TRABALHADO" ) );
+                registro.setTotalCalculado( rs.getInt( "TOTAL_CALCULADO" ) );
+            }
+            rs.close();
+            stmt.close();            
+            return registro;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
