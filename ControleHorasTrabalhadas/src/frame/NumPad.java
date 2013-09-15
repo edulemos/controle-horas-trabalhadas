@@ -13,13 +13,13 @@ import javax.swing.JTextField;
  */
 public class NumPad extends javax.swing.JFrame {
 
-    MainFrame frame;
+    MainFrame mainFrame;
     int numButton;
   
     
     public NumPad(MainFrame mainframe, int tipoPrm) {
         initComponents();
-        this.frame = mainframe;
+        this.mainFrame = mainframe;
         this.numButton = tipoPrm;
         setInitBold();
     }
@@ -779,6 +779,11 @@ public class NumPad extends javax.swing.JFrame {
                 jButton_deletarMouseClicked(evt);
             }
         });
+        jButton_deletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_deletarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton_deletar);
         jButton_deletar.setBounds(180, 126, 90, 18);
 
@@ -830,8 +835,8 @@ public class NumPad extends javax.swing.JFrame {
         getContentPane().add(jButton_limpar_campo1);
         jButton_limpar_campo1.setBounds(270, 126, 90, 18);
 
-        setSize(new java.awt.Dimension(465, 182));
-        setLocationRelativeTo(null);
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-465)/2, (screenSize.height-182)/2, 465, 182);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonH1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonH1MouseClicked
@@ -1077,27 +1082,27 @@ public class NumPad extends javax.swing.JFrame {
     private void jButton_entradaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_entradaMouseClicked
         this.numButton = 1;
         boldFont(jButton_entrada);
-        focusBlue(this.frame.jTextField_hora_entrada);            
+        focusBlue(this.mainFrame.jTextField_hora_entrada);            
         fontNormal();
     }//GEN-LAST:event_jButton_entradaMouseClicked
 
     private void jButton_saida_almMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_saida_almMouseClicked
         this.numButton = 2;
-        focusBlue(this.frame.jTextFiel_saida_almoco);            
+        focusBlue(this.mainFrame.jTextFiel_saida_almoco);            
         boldFont(jButton_saida_alm);
         fontNormal();
     }//GEN-LAST:event_jButton_saida_almMouseClicked
 
     private void jButton_volta_almMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_volta_almMouseClicked
         this.numButton = 3;
-        focusBlue(this.frame.jTextField_volta_almoco);           
+        focusBlue(this.mainFrame.jTextField_volta_almoco);           
         boldFont(jButton_volta_alm);
         fontNormal();
     }//GEN-LAST:event_jButton_volta_almMouseClicked
 
     private void jButton_saidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_saidaMouseClicked
         this.numButton = 4;
-        focusBlue(this.frame.jTextField_hora_saida);            
+        focusBlue(this.mainFrame.jTextField_hora_saida);            
         boldFont(jButton_saida);
         fontNormal();
     }//GEN-LAST:event_jButton_saidaMouseClicked
@@ -1105,13 +1110,13 @@ public class NumPad extends javax.swing.JFrame {
     private void jButton_gravarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_gravarMouseClicked
         resetFonte();
         this.dispose();
-        this.frame.gravar();        
+        this.mainFrame.gravar();        
     }//GEN-LAST:event_jButton_gravarMouseClicked
 
     private void jButton_deletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_deletarMouseClicked
         resetFonte();
         this.dispose();
-        this.frame.deletar();        
+        this.mainFrame.deletar();        
     }//GEN-LAST:event_jButton_deletarMouseClicked
 
     private void jButton_fecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_fecharMouseClicked
@@ -1122,14 +1127,14 @@ public class NumPad extends javax.swing.JFrame {
     private void jButton_saidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_saidasMouseClicked
         this.numButton = 6;
         boldFont(jButton_saidas);
-        focusBlue(this.frame.jTextField_hora_saidas);
+        focusBlue(this.mainFrame.jTextField_hora_saidas);
         fontNormal();
     }//GEN-LAST:event_jButton_saidasMouseClicked
 
     private void jButton_hora_extraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_hora_extraMouseClicked
         this.numButton = 5;
         boldFont(jButton_hora_extra);
-        focusBlue(this.frame.jTextField_hora_extra);            
+        focusBlue(this.mainFrame.jTextField_hora_extra);            
         fontNormal();
     }//GEN-LAST:event_jButton_hora_extraMouseClicked
 
@@ -1140,58 +1145,62 @@ public class NumPad extends javax.swing.JFrame {
     private void jButton_limpar_campo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_limpar_campo1MouseClicked
   
         if (this.numButton == 1) {
-            this.frame.jTextField_hora_entrada.setText("");
+            this.mainFrame.jTextField_hora_entrada.setText("");
         }
         if (this.numButton == 2) {
-            this.frame.jTextFiel_saida_almoco.setText("");
+            this.mainFrame.jTextFiel_saida_almoco.setText("");
         }
         if (this.numButton == 3) {
-            this.frame.jTextField_volta_almoco.setText("");
+            this.mainFrame.jTextField_volta_almoco.setText("");
         }
         if (this.numButton == 4) {
-            this.frame.jTextField_hora_saida.setText("");
+            this.mainFrame.jTextField_hora_saida.setText("");
         }
         if (this.numButton == 5) {
-            this.frame.jTextField_hora_extra.setText("");
+            this.mainFrame.jTextField_hora_extra.setText("");
         }
         if (this.numButton == 6) {
-            this.frame.jTextField_hora_saidas.setText("");
+            this.mainFrame.jTextField_hora_saidas.setText("");
         }
         
     }//GEN-LAST:event_jButton_limpar_campo1MouseClicked
+
+    private void jButton_deletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deletarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_deletarActionPerformed
     
    private void setText(String valor){
     
        String str = "";
        
        if (this.numButton == 1) {
-           str = this.frame.jTextField_hora_entrada.getText();
-           this.frame.jTextField_hora_entrada.setText(getStr(str,valor));
+           str = this.mainFrame.jTextField_hora_entrada.getText();
+           this.mainFrame.jTextField_hora_entrada.setText(getStr(str,valor));
        }
 
        if (this.numButton == 2) {
-           str = this.frame.jTextFiel_saida_almoco.getText();
-           this.frame.jTextFiel_saida_almoco.setText(getStr(str,valor));
+           str = this.mainFrame.jTextFiel_saida_almoco.getText();
+           this.mainFrame.jTextFiel_saida_almoco.setText(getStr(str,valor));
        }
 
        if (this.numButton == 3) {
-           str = this.frame.jTextField_volta_almoco.getText();
-           this.frame.jTextField_volta_almoco.setText(getStr(str,valor));
+           str = this.mainFrame.jTextField_volta_almoco.getText();
+           this.mainFrame.jTextField_volta_almoco.setText(getStr(str,valor));
        }
 
        if (this.numButton == 4) {
-           str = this.frame.jTextField_hora_saida.getText();
-           this.frame.jTextField_hora_saida.setText(getStr(str,valor));
+           str = this.mainFrame.jTextField_hora_saida.getText();
+           this.mainFrame.jTextField_hora_saida.setText(getStr(str,valor));
        }
 
        if (this.numButton == 5) {
-           str = this.frame.jTextField_hora_extra.getText();
-           this.frame.jTextField_hora_extra.setText(getStr(str,valor));
+           str = this.mainFrame.jTextField_hora_extra.getText();
+           this.mainFrame.jTextField_hora_extra.setText(getStr(str,valor));
        }
 
        if (this.numButton == 6) {
-           str = this.frame.jTextField_hora_saidas.getText();
-           this.frame.jTextField_hora_saidas.setText(getStr(str,valor));
+           str = this.mainFrame.jTextField_hora_saidas.getText();
+           this.mainFrame.jTextField_hora_saidas.setText(getStr(str,valor));
        }           
        
    }
@@ -1339,66 +1348,66 @@ public class NumPad extends javax.swing.JFrame {
     private void fontNormal(){
          if (this.numButton != 1) {
             jButton_entrada.setFont(new java.awt.Font("Tahoma", 0, 10));
-            focusWhite(this.frame.jTextField_hora_entrada);
+            focusWhite(this.mainFrame.jTextField_hora_entrada);
         }
         if (this.numButton != 2) {
             jButton_saida_alm.setFont(new java.awt.Font("Tahoma", 0, 10));
-            focusWhite(this.frame.jTextFiel_saida_almoco);
+            focusWhite(this.mainFrame.jTextFiel_saida_almoco);
         }
         if (this.numButton != 3) {
             jButton_volta_alm.setFont(new java.awt.Font("Tahoma", 0, 10));
-            focusWhite(this.frame.jTextField_volta_almoco);
+            focusWhite(this.mainFrame.jTextField_volta_almoco);
         }
         if (this.numButton != 4) {
             jButton_saida.setFont(new java.awt.Font("Tahoma", 0, 10));
-            focusWhite(this.frame.jTextField_hora_saida);
+            focusWhite(this.mainFrame.jTextField_hora_saida);
         }
         if (this.numButton != 5) {
             jButton_hora_extra.setFont(new java.awt.Font("Tahoma", 0, 10));
-            focusWhite(this.frame.jTextField_hora_extra);
+            focusWhite(this.mainFrame.jTextField_hora_extra);
         }
         if (this.numButton != 6) {
             jButton_saidas.setFont(new java.awt.Font("Tahoma", 0, 10));
-            focusWhite(this.frame.jTextField_hora_saidas);
+            focusWhite(this.mainFrame.jTextField_hora_saidas);
         }
            
     }
     
     // RESETA FONTE TEXTFIELD AO SAIR NUMPAD
     public void resetFonte(){
-        focusWhite(this.frame.jTextField_hora_entrada);
-        focusWhite(this.frame.jTextFiel_saida_almoco);
-        focusWhite(this.frame.jTextField_volta_almoco);
-        focusWhite(this.frame.jTextField_hora_saida);
-        focusWhite(this.frame.jTextField_hora_extra);
-        focusWhite(this.frame.jTextField_hora_saidas);
+        focusWhite(this.mainFrame.jTextField_hora_entrada);
+        focusWhite(this.mainFrame.jTextFiel_saida_almoco);
+        focusWhite(this.mainFrame.jTextField_volta_almoco);
+        focusWhite(this.mainFrame.jTextField_hora_saida);
+        focusWhite(this.mainFrame.jTextField_hora_extra);
+        focusWhite(this.mainFrame.jTextField_hora_saidas);
     }
     
     //MARCA OS PADROES AO CARREGAR A TELA
     private void setInitBold() {
         if (this.numButton == 1) {
             jButton_entrada.setFont(new java.awt.Font("Tahoma", 1, 10));
-            focusBlue(this.frame.jTextField_hora_entrada);
+            focusBlue(this.mainFrame.jTextField_hora_entrada);
         }
         if (this.numButton == 2) {
             jButton_saida_alm.setFont(new java.awt.Font("Tahoma", 1, 10));
-            focusBlue(this.frame.jTextFiel_saida_almoco);
+            focusBlue(this.mainFrame.jTextFiel_saida_almoco);
         }
         if (this.numButton == 3) {
             jButton_volta_alm.setFont(new java.awt.Font("Tahoma", 1, 10));
-            focusBlue(this.frame.jTextField_volta_almoco);
+            focusBlue(this.mainFrame.jTextField_volta_almoco);
         }
         if (this.numButton == 4) {
             jButton_saida.setFont(new java.awt.Font("Tahoma", 1, 10));
-            focusBlue(this.frame.jTextField_hora_saida);
+            focusBlue(this.mainFrame.jTextField_hora_saida);
         }
         if (this.numButton == 5) {
             jButton_hora_extra.setFont(new java.awt.Font("Tahoma", 1, 10));
-            focusBlue(this.frame.jTextField_hora_extra);
+            focusBlue(this.mainFrame.jTextField_hora_extra);
         }
         if (this.numButton == 6) {
             jButton_saidas.setFont(new java.awt.Font("Tahoma", 1, 10));
-            focusBlue(this.frame.jTextField_hora_saidas);
+            focusBlue(this.mainFrame.jTextField_hora_saidas);
         }
     }
 }

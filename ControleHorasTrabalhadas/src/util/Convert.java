@@ -20,15 +20,16 @@ public class Convert {
         registro.setHoraExtra(strTimeToMinut(horaExtra));
         registro.setSaidas(strTimeToMinut(saidas));
         
-        if (!"00:00".equals(entrada) && !"00:00".equals(saidaAlmoco) && !"00:00".equals(voltaAlmoco) && !"00:00".equals(saida)) {
+        if ( entrada.length() == 5 &&  saidaAlmoco.length() == 5 && voltaAlmoco.length() == 5 && saida.length() == 5) {
             
             registro.setTotalTrabalhado(c.trabalhado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
-            
-            if(isBusinessDay(data))
-            	registro.setTotalCalculado(c.calculado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
-            else
-            	registro.setTotalCalculado(c.trabalhadoDiaExtra(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
-            
+           
+            if (isBusinessDay(data)) {
+                registro.setTotalCalculado(c.calculado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+            } else {
+                registro.setTotalCalculado(c.trabalhadoDiaExtra(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
+            }
+
         } else {
             
             registro.setTotalTrabalhado(0);

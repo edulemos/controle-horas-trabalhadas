@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -75,6 +74,7 @@ public class MainFrame extends javax.swing.JFrame {
                 public void propertyChange(PropertyChangeEvent e) {
                     if ("date".equals(e.getPropertyName())) {
 
+                        id = "";
                         jTextField_hora_entrada.setText("");
                         jTextFiel_saida_almoco.setText("");
                         jTextField_volta_almoco.setText("");
@@ -377,12 +377,13 @@ public class MainFrame extends javax.swing.JFrame {
             getContentPane().add(jTextField_calculado);
             jTextField_calculado.setBounds(325, 100, 100, 25);
 
-            setSize(new java.awt.Dimension(444, 528));
-            setLocationRelativeTo(null);
+            java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+            setBounds((screenSize.width-444)/2, (screenSize.height-528)/2, 444, 528);
         }// </editor-fold>//GEN-END:initComponents
 
     
     public void gravar(){
+        
         data = jDate_data.getDate();
         entrada = jTextField_hora_entrada.getText();
         saidaAlmoco = jTextFiel_saida_almoco.getText();
@@ -474,7 +475,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     public void deletar(){
         try {
-            if (null != id && !"".equals(id)) {
+            if (null != this.id && !"".equals(this.id)) {
                 String excluir = "Confirma a exclusão do registro de " + sdf.format(jDate_data.getDate()) + "!";
                 int opcao_escolhida = JOptionPane.showConfirmDialog(null, excluir, "exclusão", JOptionPane.YES_NO_OPTION);
                 if (opcao_escolhida == JOptionPane.YES_OPTION) {
@@ -715,13 +716,19 @@ public class MainFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void recarregarAtual(int fl_date) {
-        Registro registro1;
-        if(fl_date == 1){
-              registro1 = dao().getRegistroBydate(new java.sql.Date(new java.util.Date().getTime()));
-        }else{
-             registro1 = dao().getRegistro(this.id);
-        }
         
+        Registro registro1 = null;
+        
+        if (fl_date == 1) {
+
+            registro1 = dao().getRegistroBydate(new java.sql.Date(new java.util.Date().getTime()));
+            
+        } else if (null != this.id  && !"" .equals(this.id)) {
+            
+            registro1 = dao().getRegistro(this.id);
+            
+        }
+
         if (null != registro1) {
 
             jDate_data.setDate(registro.getData());
