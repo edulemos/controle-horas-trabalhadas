@@ -20,7 +20,10 @@ public class Convert {
         registro.setHoraExtra(strTimeToMinut(horaExtra));
         registro.setSaidas(strTimeToMinut(saidas));
         
-        if ( entrada.length() == 5 &&  saidaAlmoco.length() == 5 && voltaAlmoco.length() == 5 && saida.length() == 5) {
+        if (  entrada.length()      == 5 && !"00:00".equals(entrada) 
+           && saidaAlmoco.length()  == 5 && !"00:00".equals(saidaAlmoco)
+           && voltaAlmoco.length()  == 5 && !"00:00".equals(voltaAlmoco)
+           && saida.length()        == 5 && !"00:00".equals(saida)) {
             
             registro.setTotalTrabalhado(c.trabalhado(entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas));
            

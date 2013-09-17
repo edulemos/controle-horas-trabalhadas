@@ -729,7 +729,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         if (null != registro1) {
 
-            jDate_data.setDate(registro.getData());
             jTextField_hora_entrada.setText(converte.minToHoraStr(registro1.getEntrada()));
             jTextFiel_saida_almoco.setText(converte.minToHoraStr(registro1.getSaidaAlmoco()));
             jTextField_volta_almoco.setText(converte.minToHoraStr(registro1.getVoltaAlmoco()));
@@ -738,7 +737,7 @@ public class MainFrame extends javax.swing.JFrame {
             jTextField_hora_saidas.setText(converte.minToHoraStr(registro1.getSaidas()));
             jTextField_trabalhado.setText(converte.minToHoraStr(registro1.getTotalTrabalhado()));
             jTextField_calculado.setText(converte.minToHoraStr(registro1.getTotalCalculado()));
-            id = registro.getId();
+            id = registro1.getId();
 
         }
     }
