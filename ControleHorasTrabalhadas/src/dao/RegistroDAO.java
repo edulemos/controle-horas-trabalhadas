@@ -191,7 +191,7 @@ private int prm;
         }
     }
 
-    public Registro getRegistro(String id) {
+    public Registro getRegistro(Integer id) {
          String sql = "SELECT * FROM REGISTRO WHERE id = ?";
         try {
             PreparedStatement stmt = this.con.prepareStatement( sql );

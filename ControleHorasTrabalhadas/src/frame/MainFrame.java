@@ -35,7 +35,7 @@ public class MainFrame extends javax.swing.JFrame {
     private String horaExtra = "";
     private String saidas = "";
     private String erros = "";
-    private String id = "";
+    private Integer id = null;
     private Valida validate = new Valida();
     private Convert converte = new Convert();
     private OpenBrowser o = new OpenBrowser();
@@ -53,7 +53,7 @@ public class MainFrame extends javax.swing.JFrame {
         preencher_jtable();
         alinhaCampos();
         avisoBackup();
-        recarregarAtual(1);
+        recarregarAtual();
     }
 
     @SuppressWarnings("unchecked")
@@ -74,7 +74,7 @@ public class MainFrame extends javax.swing.JFrame {
                 public void propertyChange(PropertyChangeEvent e) {
                     if ("date".equals(e.getPropertyName())) {
 
-                        id = "";
+                        id = null;
                         jTextField_hora_entrada.setText("");
                         jTextFiel_saida_almoco.setText("");
                         jTextField_volta_almoco.setText("");
@@ -377,13 +377,13 @@ public class MainFrame extends javax.swing.JFrame {
             getContentPane().add(jTextField_calculado);
             jTextField_calculado.setBounds(325, 100, 100, 25);
 
-            java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-            setBounds((screenSize.width-444)/2, (screenSize.height-528)/2, 444, 528);
+            setSize(new java.awt.Dimension(444, 528));
+            setLocationRelativeTo(null);
         }// </editor-fold>//GEN-END:initComponents
 
     
-    public void gravar(){
-        
+    public void gravar() throws SQLException {
+
         data = jDate_data.getDate();
         entrada = jTextField_hora_entrada.getText();
         saidaAlmoco = jTextFiel_saida_almoco.getText();
@@ -395,34 +395,32 @@ public class MainFrame extends javax.swing.JFrame {
         erros = validate.validaFields(data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas);
 
         String msg = "";
-                
+
         if ("".equals(erros)) {
 
-            if (null != id && !"".equals(id)) {
-                msg = "CONFIRMA EDIÇÃO\n REGISTRO " + sdf.format(data);
-                int opcao_escolhida = JOptionPane.showConfirmDialog(null, msg, "Confirmação", JOptionPane.YES_NO_OPTION);
-                if (opcao_escolhida == JOptionPane.YES_OPTION) {
-                    dao().editar(converte.strToObj(new Integer(id), data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas, data));
-                }
-                recarregarAtual(0);          
-            } else {
-                try {
-                    if (!dao().verificaDuplicado(converte.dataSql(data))) {
-                        msg = "CONFIRMA GRAVAÇÃO \n REGISTRO " + sdf.format(data);
-                        int opcao_escolhida = JOptionPane.showConfirmDialog(null, msg, "Confirmação", JOptionPane.YES_NO_OPTION);
-                        if (opcao_escolhida == JOptionPane.YES_OPTION) {
-                            dao().save(converte.strToObj(null, data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas, data));
-                        }
-                        recarregarAtual(3);          
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Data já Cadastrada!");
+            if (null == id ) {
+
+                msg = "CONFIRMA GRAVAÇÃO \n REGISTRO " + sdf.format(data);
+                    int opcao_escolhida = JOptionPane.showConfirmDialog(null, msg, "Confirmação", JOptionPane.YES_NO_OPTION);
+                    
+                    if (opcao_escolhida == JOptionPane.YES_OPTION) {
+                        dao().save(converte.strToObj(null, data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas, data));
                     }
-                } catch (SQLException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    
+            } else {
+                               
+                    msg = "CONFIRMA EDIÇÃO\n REGISTRO " + sdf.format(data);
+                    int opcao_escolhida = JOptionPane.showConfirmDialog(null, msg, "Confirmação", JOptionPane.YES_NO_OPTION);
+                    if (opcao_escolhida == JOptionPane.YES_OPTION) {
+                        dao().editar(converte.strToObj(new Integer(id), data, entrada, saidaAlmoco, voltaAlmoco, saida, horaExtra, saidas, data));
+               
+                }                
+                
             }
+            
+            recarregarAtual();
             preencher_jtable();
-            recarregarAtual(0);
+            
         } else {
             JOptionPane.showMessageDialog(null, erros);
         }
@@ -453,7 +451,7 @@ public class MainFrame extends javax.swing.JFrame {
                 jTextField_hora_saidas.setText(jTable1.getValueAt(linha, 7).toString());
                 jTextField_trabalhado.setText(jTable1.getValueAt(linha, 8).toString());                
                 jTextField_calculado.setText(jTable1.getValueAt(linha, 9).toString());      
-                this.id = jTable1.getValueAt(linha, 0).toString();
+                id = new Integer(jTable1.getValueAt(linha, 0).toString());
 
                                 
 
@@ -465,7 +463,7 @@ public class MainFrame extends javax.swing.JFrame {
         }    }//GEN-LAST:event_jTable1MouseClicked
 
     public void limpar(){
-         this.id = "";     
+            id = null;     
             jDate_data.setDate(new java.util.Date());
             jTextField_hora_entrada.setText("");
             jTextFiel_saida_almoco.setText("");                
@@ -719,22 +717,14 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel label_entrada9;
     // End of variables declaration//GEN-END:variables
 
-    private void recarregarAtual(int fl_date) {
+    private void recarregarAtual() {
         
         Registro registro1 = null;
         
-        if (fl_date == 1) {
-
-            registro1 = dao().getRegistroBydate(new java.sql.Date(new java.util.Date().getTime()));
-            
-        } else if (fl_date == 3) {
-            
-            registro1 = dao().getRegistroBydate(converte.dataSql(data));
-            
-        }else if (null != this.id  && !"" .equals(this.id)) {
-            
-            registro1 = dao().getRegistro(this.id);
-            
+         if (null == id && null != data) {
+            registro1 = dao().getRegistroBydate(converte.dataSql(data));            
+        } else if (null != id){
+            registro1 = dao().getRegistro(id);
         }
 
         if (null != registro1) {
@@ -748,6 +738,8 @@ public class MainFrame extends javax.swing.JFrame {
             jTextField_hora_saidas.setText(converte.minToHoraStr(registro1.getSaidas()));
             jTextField_trabalhado.setText(converte.minToHoraStr(registro1.getTotalTrabalhado()));
             jTextField_calculado.setText(converte.minToHoraStr(registro1.getTotalCalculado()));
+            id = registro.getId();
+
         }
     }
 

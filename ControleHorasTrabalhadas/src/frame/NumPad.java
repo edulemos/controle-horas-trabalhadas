@@ -4,6 +4,9 @@
  */
 package frame;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -1105,7 +1108,11 @@ public class NumPad extends javax.swing.JFrame {
     private void jButton_gravarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_gravarMouseClicked
         resetFonte();
         this.dispose();
-        this.mainFrame.gravar();        
+        try {        
+            this.mainFrame.gravar();
+        } catch (SQLException ex) {
+            Logger.getLogger(NumPad.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton_gravarMouseClicked
 
     private void jButton_deletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_deletarMouseClicked
