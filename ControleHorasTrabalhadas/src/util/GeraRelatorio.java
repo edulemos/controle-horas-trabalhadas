@@ -79,9 +79,12 @@ public class GeraRelatorio {
                 str+=  "\nPrevisto Periodo: " + c.minToHoraStr((horasPrevistas*60))+ "      Trabalhado: " + c.minToHoraStr(trabalhado)+
                   "\nHoras Extras: " + c.minToHoraStr(horaextra)  + "           Calculado: " + c.minToHoraStr(calculado) +
                   "\nPerdas: " + c.minToHoraStr(perda) + "                 Diferenca: " + c.minToHoraStr(trabalhado-calculado) +
-                  "\nPrevisto Final: " +c.minToHoraStr((horasPrevistas*60)+horaextra-perda )
-
-                  ;
+                  "\nPrevisto Final: " +c.minToHoraStr((horasPrevistas*60)+horaextra-perda );
+                
+                
+                str +=
+                 "\n\n" + mapa.get("sabados") + " Sabado(s)" + " | " + mapa.get("domingos") + " Domingo(s)" + " | " +
+                 "" + mapa.get("feriados") + " Feriado(s)" + " | " +  mapa.get("diasUteis") + " Dia(s)Utei(s)" + "\n\n" ;          
                  
               	    
              gerarArquivo(str);     
