@@ -12,13 +12,16 @@ import java.util.logging.Logger;
 
 import model.Registro;
 import dao.RegistroDAO;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
 public class GeraRelatorio {
     
-    public void relatorio(java.util.Date inicio, java.util.Date fim) {
+    public void relatorio(java.util.Date inicio, java.util.Date fim) throws ParseException {
         try {
             Convert c = new Convert();
             SimpleDateFormat sd2 = new SimpleDateFormat("dd/MM");
@@ -73,6 +76,10 @@ public class GeraRelatorio {
             }
             
             sobra = trabalhado - calculado;
+            
+            int diasPerdidos = verificaFaltas(lista,inicio)*480;
+            
+            perda = perda + diasPerdidos;
             
             int horasPrevistas = new Integer(mapa.get("diasUteis"))*8;
                                    
@@ -166,7 +173,7 @@ public class GeraRelatorio {
     }  
        
           @SuppressWarnings("deprecation")
-	public static void main(String args[]){
+	public static void main(String args[]) throws ParseException{
               
         SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
     	java.util.Date ini = new java.util.Date(113, 4, 21);
@@ -174,9 +181,51 @@ public class GeraRelatorio {
    	
          new GeraRelatorio().relatorio(ini, fim);       
                 
+    }             
+
+    private int verificaFaltas(List<Registro> lista, Date inicio) throws ParseException {
+
+        int count = 0;
+        ArrayList<String> feriados = new XmlReader().listaFeriados();            
+        ArrayList<String> listaDiasPeriodo = new ArrayList<String>();
+        ArrayList<String> listaDiasTralhados = new ArrayList<String>();
+
+        DateFormat sd = new SimpleDateFormat ("dd-MM-yyyy");  
+        Date dt1 = inicio;  
+        Date dt2 = new Date();  
+        Calendar cal = Calendar.getInstance();  
+        cal.setTime (dt1);  
+        
+        //CARREGA DATAS DO PERIODO
+        for (Date dt = dt1; dt.compareTo (dt2) <= 0; ) {              
+            listaDiasPeriodo.add(sd.format (dt));
+            cal.add (Calendar.DATE, +1);  
+            dt = cal.getTime();  
+        }                 
+       
+        //CARREGA DATAS REGISTRADAS
+        for (Registro reg : lista) {
+            listaDiasTralhados.add(sd.format(reg.getData()));
+        }
+        
+        //COMPARA DATAS
+        for (String diaPeriodo : listaDiasPeriodo) {
+            
+            Date data = sd.parse(diaPeriodo);
+            
+            // SE DATA NÃO TIVER NA LISTA E NÃO FOR SABADO, DOMINGO OU FERIADO ADICIONO FALTA
+            if(!listaDiasTralhados.contains(diaPeriodo) && data.getDay()!=6 && data.getDay()!=0 && !feriados.contains(sd.format(data))){
+                count ++;
+            }
+            
+        }
+        
+        
+     
+        return count;
+
     }
-             
-         
+      
     
 }
 
