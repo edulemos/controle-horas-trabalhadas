@@ -104,24 +104,9 @@ public class Convert {
             SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
             SimpleDateFormat sd1 = new SimpleDateFormat("EEEE");
 
-            //Feriados nacionais que caem no meio da semana
-            ArrayList<String> feriados = new ArrayList<String>();
-            feriados.add("29-03-2013"); // Pascoa
-            feriados.add("01-05-2013"); // Dia do Trabalho
-            feriados.add("30-05-2013"); // Corpus christi]
-            feriados.add("25-07-2013"); // JMJ
-            feriados.add("26-07-2013"); // JMJ
-            feriados.add("15-11-2013"); // Proclamacao Republica 
-            feriados.add("25-12-2013"); // Natal
-            feriados.add("01-01-2014"); // Ano Novo
-            feriados.add("04-03-2014"); // Carvaval
-            feriados.add("18-04-2014"); // Pascoa
-            feriados.add("21-04-2014"); // Tiradentes
-            feriados.add("01-05-2014"); // Dia do Trabalho
-            feriados.add("19-06-2014"); // Corpus christi            
-            feriados.add("25-12-2014"); // Natal
-            feriados.add("01-01-2015"); // Ano Novo
-
+            //Feriados nacionais que caem no meio da semana cadastrados no xml
+            ArrayList<String> feriados = new XmlReader().listaFeriados();
+           
             if( "Domingo".equals(sd1.format(data)) || "Sábado".equals(sd1.format(data)) ||
                 "Sunday".equals(sd1.format(data)) || "Saturday".equals(sd1.format(data)) || feriados.contains(sd.format(data)))
              return false;

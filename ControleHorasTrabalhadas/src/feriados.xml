@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!--Registro de Feriados que caem no meio da semana-->
+<Feriados>
+	<feriado>
+		<data>29-03-2013</data>
+		<descricao>Pascoa</descricao>		
+	</feriado>
+	<feriado>
+		<data>01-05-2013</data>
+		<descricao>Dia do Trabalho</descricao>		
+	</feriado>
+	<feriado>
+		<data>30-05-2013</data>
+		<descricao>Corpus christi</descricao>		
+	</feriado>
+	<feriado>
+		<data>25-07-2013</data>
+		<descricao>JMJ</descricao>		
+	</feriado>
+	<feriado>
+		<data>26-07-2013</data>
+		<descricao>JMJ</descricao>		
+	</feriado>
+	<feriado>
+		<data>21-10-2013</data>
+		<descricao>Dia Informatica</descricao>		
+	</feriado>
+	<feriado>
+		<data>15-11-2013</data>
+		<descricao>Proclamacao Republica </descricao>		
+	</feriado>
+	<feriado>
+		<data>24-12-2013</data>
+		<descricao>Vespera Natal</descricao>		
+	</feriado>
+	<feriado>
+		<data>25-12-2013</data>
+		<descricao>Natal</descricao>		
+	</feriado>
+	<feriado>
+		<data>31-12-2013</data>
+		<descricao>Vespera Ano Novo</descricao>		
+	</feriado>
+	<feriado>
+		<data>01-01-2014</data>
+		<descricao>Ano Novo</descricao>		
+	</feriado>
+	<feriado>
+		<data>04-03-2014</data>
+		<descricao>Carvaval</descricao>		
+	</feriado>
+	<feriado>
+		<data>18-04-2014</data>
+		<descricao>Pascoa</descricao>		
+	</feriado>
+	<feriado>
+		<data>21-04-2014</data>
+		<descricao>Tiradentes</descricao>		
+	</feriado>
+	<feriado>
+		<data>01-05-2014</data>
+		<descricao>Dia do Trabalho</descricao>		
+	</feriado>
+	<feriado>
+		<data>19-06-2014</data>
+		<descricao>Corpus christi</descricao>		
+	</feriado>
+	<feriado>
+		<data>24-12-2014</data>
+		<descricao>Vespera Natal</descricao>		
+	</feriado>
+	<feriado>
+		<data>25-12-2014</data>
+		<descricao>Natal</descricao>		
+	</feriado>
+	<feriado>
+		<data>31-12-2014</data>
+		<descricao>Vespera Ano Novo</descricao>		
+	</feriado>
+	<feriado>
+		<data>01-01-2015</data>
+		<descricao>Ano Novo</descricao>		
+	</feriado>
+</Feriados>
