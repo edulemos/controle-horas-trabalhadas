@@ -500,7 +500,12 @@ public class MainFrame extends javax.swing.JFrame {
         }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        new GeraRelatorio().relatorio(jDate_de.getDate(), jDate_ate.getDate());
+        try {
+             new GeraRelatorio().relatorio(jDate_de.getDate(), jDate_ate.getDate());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao gerar relatório!\n " +e.getMessage());
+        }
+       
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jTextFiel_saida_almocoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFiel_saida_almocoMouseClicked
