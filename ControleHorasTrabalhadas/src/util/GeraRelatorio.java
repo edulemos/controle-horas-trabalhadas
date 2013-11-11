@@ -77,7 +77,7 @@ public class GeraRelatorio {
             
             sobra = trabalhado - calculado;
             
-            int diasPerdidos = verificaFaltas(lista,inicio)*480;
+            int diasPerdidos = verificaFaltas(lista,inicio,fim)*480;
             
             perda = perda + diasPerdidos;
             
@@ -183,7 +183,7 @@ public class GeraRelatorio {
                 
     }             
 
-    private int verificaFaltas(List<Registro> lista, Date inicio) throws ParseException {
+    private int verificaFaltas(List<Registro> lista, Date inicio, Date fim) throws ParseException {
 
         int count = 0;
         ArrayList<String> feriados = new XmlReader().listaFeriados();            
@@ -192,7 +192,12 @@ public class GeraRelatorio {
 
         DateFormat sd = new SimpleDateFormat ("dd-MM-yyyy");  
         Date dt1 = inicio;  
+        
         Date dt2 = new Date();  
+        
+        if(dt2.after(fim))
+           dt2=fim;
+        
         Calendar cal = Calendar.getInstance();  
         cal.setTime (dt1);  
         
