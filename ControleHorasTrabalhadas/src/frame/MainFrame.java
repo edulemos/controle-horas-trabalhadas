@@ -45,15 +45,13 @@ public class MainFrame extends javax.swing.JFrame {
     private Integer calculadoMes = 0;     
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-    public MainFrame() {
-        
+    public MainFrame() {        
         initComponents();
         jDate_data.setDate(new java.util.Date());
         setParameter();
         preencher_jtable();
         alinhaCampos();
         avisoBackup();
-        recarregarAtual();
     }
 
     @SuppressWarnings("unchecked")
@@ -418,8 +416,8 @@ public class MainFrame extends javax.swing.JFrame {
                 
             }
             
-            recarregarAtual();
-            preencher_jtable();
+            recarregarAtual();       
+            preencher_jtable();            
             
         } else {
             JOptionPane.showMessageDialog(null, erros);
@@ -723,15 +721,10 @@ public class MainFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void recarregarAtual() {
-        
-        Registro registro1 = null;
-        
-         if (null == id && null != data) {
-            registro1 = dao().getRegistroBydate(converte.dataSql(data));            
-        } else if (null != id){
-            registro1 = dao().getRegistro(id);
-        }
-
+                
+       java.sql.Date sqlDate = new java.sql.Date(jDate_data.getDate().getTime());        
+       Registro registro1 = dao().getRegistroBydate(sqlDate);
+                
         if (null != registro1) {
 
             jTextField_hora_entrada.setText(converte.minToHoraStr(registro1.getEntrada()));

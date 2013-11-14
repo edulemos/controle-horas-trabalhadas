@@ -33,36 +33,43 @@ public class GeraRelatorio {
             RegistroDAO dao = new RegistroDAO();
             List<Registro> lista = dao.getLista(c.dataSql(inicio), c.dataSql(fim));
             str += "Periodo de " + sd3.format(inicio) + " a " + sd3.format(fim) + "\n\n";
-            str += "Data   " + "Entr   " + "S.Alm  " + "V.Alm  " + "Saida  " + "H.Ext  " + "Saidas " + "Trab   " + "Calc " + "\n";
+            str += "Data   " + "Entr   " + "S.Alm  " + "V.Alm  " + "Saida  " + "H.Ext  " + "Perda  " + "Trab   " + "Calc " + "\n";
             str += "-------------------------------------------------------------\n";
 
-            int calculado = 0, trabalhado = 0, sobra = 0, perda = 0, horaextra = 0;
+            int calculado = 0, trabalhado = 0, sobra = 0, perdaMes = 0, horaExtraMes = 0, perdaDia = 0, horaExtraDia = 0;
 
             for (Registro r : lista) {
-                str += sd2.format(r.getData()) + "  "
+               
+                if (r.getEntrada() != 0 && r.getSaidaAlmoco() != 0 && r.getVoltaAlmoco() != 0 && r.getSaida() != 0) {
+                    diaFechado = true;
+                }
+                
+                 perdaDia = 0;
+                 horaExtraDia = 0;
+
+                if (!c.isBusinessDay(r.getData())) {
+                    horaExtraDia = r.getTotalCalculado();
+                    horaExtraMes += horaExtraDia;
+                } else {
+                    if (r.getTotalCalculado() > 480) {
+                        horaExtraDia = r.getTotalCalculado() - 480;
+                        horaExtraMes += horaExtraDia;
+                    } else if (r.getTotalCalculado() < 480 && diaFechado) {
+                        perdaDia = 480 - r.getTotalCalculado();
+                        perdaMes += perdaDia;
+                    }
+                }
+                
+                 str += sd2.format(r.getData()) + "  "
                         + c.minToHoraStr(r.getEntrada()) + "  "
                         + c.minToHoraStr(r.getSaidaAlmoco()) + "  "
                         + c.minToHoraStr(r.getVoltaAlmoco()) + "  "
                         + c.minToHoraStr(r.getSaida()) + "  "
-                        + c.minToHoraStr(r.getHoraExtra()) + "  "
-                        + c.minToHoraStr(r.getSaidas()) + "  "
+                        + c.minToHoraStr(horaExtraDia) + "  "
+                        + c.minToHoraStr(perdaDia) + "  "
                         + c.minToHoraStr(r.getTotalTrabalhado()) + "  "
                         + c.minToHoraStr(r.getTotalCalculado()) + "\n";
                 str += "-------------------------------------------------------------\n";
-
-                if (r.getEntrada() != 0 && r.getSaidaAlmoco() != 0 && r.getVoltaAlmoco() != 0 && r.getSaida() != 0) {
-                    diaFechado = true;
-                }
-
-                if (!c.isBusinessDay(r.getData())) {
-                    horaextra += r.getTotalCalculado();
-                } else {
-                    if (r.getTotalCalculado() > 480) {
-                        horaextra += r.getTotalCalculado() - 480;
-                    } else if (r.getTotalCalculado() < 480 && diaFechado) {
-                        perda += 480 - r.getTotalCalculado();
-                    }
-                }
 
                 calculado += r.getTotalCalculado();
                 trabalhado += r.getTotalTrabalhado();
@@ -72,14 +79,14 @@ public class GeraRelatorio {
 
             int faltas = verificaFaltas(lista, inicio, fim) * 480;
 
-            perda = perda +  faltas;
+            perdaMes = perdaMes +  faltas;
             
             int horasPrevistas = new Integer(mapa.get("diasUteis")) * 8;
 
             str += "\nPrevisto Periodo: " + c.minToHoraStr((horasPrevistas * 60)) + "      Trabalhado: " + c.minToHoraStr(trabalhado)
-                    + "\nHoras Extras: " + c.minToHoraStr(horaextra) + "           Calculado: " + c.minToHoraStr(calculado)
-                    + "\nPerdas: " + c.minToHoraStr(perda) + "                 Diferenca: " + c.minToHoraStr(trabalhado - calculado)
-                    + "\nPrevisto Final: " + c.minToHoraStr((horasPrevistas * 60) + horaextra - perda);
+                    + "\nHoras Extras: " + c.minToHoraStr(horaExtraMes) + "           Calculado: " + c.minToHoraStr(calculado)
+                    + "\nPerdas: " + c.minToHoraStr(perdaMes) + "                 Diferenca: " + c.minToHoraStr(trabalhado - calculado)
+                    + "\nPrevisto Final: " + c.minToHoraStr((horasPrevistas * 60) + horaExtraMes - perdaMes);
 
             str +=
                     "\n\n" + mapa.get("sabados") + " Sabado(s)" + " | " + mapa.get("domingos") + " Domingo(s)" + " | "
