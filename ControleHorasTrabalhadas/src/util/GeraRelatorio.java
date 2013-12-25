@@ -200,6 +200,8 @@ public class GeraRelatorio {
         ArrayList<String> listaDiasPeriodoAux = new ArrayList<String>();
 
         DateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat sd1 = new SimpleDateFormat("dd-MM-yyyy");
+
         Date dt1 = inicio;
         Date dt2 = new Date();
 
@@ -221,7 +223,7 @@ public class GeraRelatorio {
         for (String diaPeriodo : listaDiasPeriodo) {
             Date data = sd.parse(diaPeriodo);
            
-            if (data.getDay() != 6 && data.getDay() != 0 && !feriados.contains(sd.format(data))) {
+            if (data.getDay() != 6 && data.getDay() != 0 && !feriados.contains(sd1.format(data))) {
                listaDiasPeriodoAux.add(diaPeriodo);
             }
             
@@ -232,8 +234,8 @@ public class GeraRelatorio {
     @SuppressWarnings("deprecation")
     public static void main(String args[]) throws ParseException {
         SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
-        java.util.Date ini = new java.util.Date(113, 4, 21);
-        java.util.Date fim = new java.util.Date(113, 5, 20);
+        java.util.Date ini = new java.util.Date(113, 11, 21);
+        java.util.Date fim = new java.util.Date(114, 0, 20);
         
       new GeraRelatorio().relatorio(ini, fim);
       
