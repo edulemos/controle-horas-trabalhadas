@@ -24,21 +24,27 @@ public class GeraRelatorio {
     public void relatorio(java.util.Date inicio, java.util.Date fim) throws ParseException {
         try {
             Convert c = new Convert();
-            SimpleDateFormat sd2 = new SimpleDateFormat("dd/MM");
-            SimpleDateFormat sd3 = new SimpleDateFormat("dd/MM/yyyy");
-            HashMap<String, String> mapa = resumoDatasPeriodo(inicio, fim);
-            boolean diaFechado = false;
+            SimpleDateFormat sd1 = new SimpleDateFormat("dd/MM");
+            SimpleDateFormat sd2 = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat sd3 = new SimpleDateFormat("dd.MM.yyyy");
 
+            HashMap<String, String> mapa = resumoDatasPeriodo(inicio, fim);
+            List<String> listaFaltas = listaDiasUteis(inicio,fim);
+
+            boolean diaFechado = false;
+            
             String str = "";
             RegistroDAO dao = new RegistroDAO();
             List<Registro> lista = dao.getLista(c.dataSql(inicio), c.dataSql(fim));
-            str += "Periodo de " + sd3.format(inicio) + " a " + sd3.format(fim) + "\n\n";
+            str += "Periodo de " + sd2.format(inicio) + " a " + sd2.format(fim) + "\n\n";
             str += "Data   " + "Entr   " + "S.Alm  " + "V.Alm  " + "Saida  " + "H.Ext  " + "Perda  " + "Trab   " + "Calc " + "\n";
             str += "-------------------------------------------------------------\n";
 
             int calculado = 0, trabalhado = 0, sobra = 0, perdaMes = 0, horaExtraMes = 0, perdaDia = 0, horaExtraDia = 0;
 
             for (Registro r : lista) {
+                           
+            listaFaltas.remove(sd2.format(r.getData()));
                
                 if (r.getEntrada() != 0 && r.getSaidaAlmoco() != 0 && r.getVoltaAlmoco() != 0 && r.getSaida() != 0) {
                     diaFechado = true;
@@ -60,7 +66,7 @@ public class GeraRelatorio {
                     }
                 }
                 
-                 str += sd2.format(r.getData()) + "  "
+                 str += sd1.format(r.getData()) + "  "
                         + c.minToHoraStr(r.getEntrada()) + "  "
                         + c.minToHoraStr(r.getSaidaAlmoco()) + "  "
                         + c.minToHoraStr(r.getVoltaAlmoco()) + "  "
@@ -74,10 +80,28 @@ public class GeraRelatorio {
                 calculado += r.getTotalCalculado();
                 trabalhado += r.getTotalTrabalhado();
             }
+            
+            if(listaFaltas.size()>0){
+                str += "FALTAS-------------------------------------------------------\n";
+            }
+            
+            for (String data : listaFaltas) {            
+                            str +=
+                         sd1.format(sd2.parse(data))+"  "                  
+                        + c.minToHoraStr(0) + "  "
+                        + c.minToHoraStr(0) + "  "
+                        + c.minToHoraStr(0) + "  "
+                        + c.minToHoraStr(0) + "  "
+                        + c.minToHoraStr(0) + "  "
+                        + c.minToHoraStr(480) + "  "
+                        + c.minToHoraStr(0) + "  "
+                        + c.minToHoraStr(0) + "\n";
+                str += "-------------------------------------------------------------\n";                                                      
+            }
 
             sobra = trabalhado - calculado;
 
-            int faltas = verificaFaltas(lista, inicio, fim) * 480;
+            int faltas = listaFaltas.size() * 480;
 
             perdaMes = perdaMes +  faltas;
             
@@ -92,16 +116,20 @@ public class GeraRelatorio {
                     "\n\n" + mapa.get("sabados") + " Sabado(s)" + " | " + mapa.get("domingos") + " Domingo(s)" + " | "
                     + "" + mapa.get("feriados") + " Feriado(s)" + " | " + mapa.get("diasUteis") + " Dia(s)Utei(s)" + "\n\n";
 
-            gerarArquivo(str);
+            
+            String nomeRel = "Relatorio " + sd3.format(inicio)+"_"+sd3.format(fim);
+            gerarArquivo(str,nomeRel);
+          //System.out.println(str);
+
 
         } catch (SQLException ex) {
             Logger.getLogger(GeraRelatorio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void gerarArquivo(String texto) {
+    public void gerarArquivo(String texto,String nome) {
         try {
-            File arquivo = new File("relatorio.rtf");
+            File arquivo = new File(nome+".rtf");
             if (arquivo.exists()) {
                 arquivo.delete();
             }
@@ -163,17 +191,16 @@ public class GeraRelatorio {
         long dif = milisecFinal - milisecInicial;
         return (((dif / 1000) / 60) / 60) / 24;
     }
-
-    private int verificaFaltas(List<Registro> lista, Date inicio, Date fim) throws ParseException {
+    
+     private List<String> listaDiasUteis(Date inicio,Date fim) throws ParseException {
 
         int count = 0;
         ArrayList<String> feriados = new XmlReader().listaFeriados();
         ArrayList<String> listaDiasPeriodo = new ArrayList<String>();
-        ArrayList<String> listaDiasTralhados = new ArrayList<String>();
+        ArrayList<String> listaDiasPeriodoAux = new ArrayList<String>();
 
-        DateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
         Date dt1 = inicio;
-
         Date dt2 = new Date();
 
         if (dt2.after(fim)) {
@@ -190,20 +217,16 @@ public class GeraRelatorio {
             dt = cal.getTime();
         }
 
-        //CARREGA DATAS REGISTRADAS
-        for (Registro reg : lista) {
-            listaDiasTralhados.add(sd.format(reg.getData()));
-        }
-        
         //COMPARA DATAS
         for (String diaPeriodo : listaDiasPeriodo) {
             Date data = sd.parse(diaPeriodo);
-            // SE DATA NÃO TIVER NA LISTA E NÃO FOR SABADO, DOMINGO OU FERIADO ADICIONO FALTA
-            if (!listaDiasTralhados.contains(diaPeriodo) && data.getDay() != 6 && data.getDay() != 0 && !feriados.contains(sd.format(data))) {
-                count++;
+           
+            if (data.getDay() != 6 && data.getDay() != 0 && !feriados.contains(sd.format(data))) {
+               listaDiasPeriodoAux.add(diaPeriodo);
             }
+            
         }
-        return count;
+        return listaDiasPeriodoAux;
     }
 
     @SuppressWarnings("deprecation")
@@ -211,7 +234,9 @@ public class GeraRelatorio {
         SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
         java.util.Date ini = new java.util.Date(113, 4, 21);
         java.util.Date fim = new java.util.Date(113, 5, 20);
-        new GeraRelatorio().relatorio(ini, fim);
+        
+      new GeraRelatorio().relatorio(ini, fim);
+      
     }
     
 }
